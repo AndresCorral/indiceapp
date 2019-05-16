@@ -1,4 +1,4 @@
-<?php 
+<?php
 	include '../conexion/conexion.php';
 	if (!isset($_SESSION['nick'])) {
 	header('location:../');
@@ -32,11 +32,12 @@
 </head>
 	<body>
 		<main>
-			<?php 
+			<?php
 				if ($_SESSION['nivel'] == 'ADMINISTRADOR') {
-					include 'menu-admin.php';				
-				}else{
+					include 'menu-admin.php';
+				}elseif($_SESSION['nivel'] == 'CLIENTE'){
 					include 'menu-asesor.php';
+				}else{
+					include 'menu-piscinero.php';
 				}
 			 ?>
-		

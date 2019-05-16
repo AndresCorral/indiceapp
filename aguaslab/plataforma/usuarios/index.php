@@ -1,4 +1,4 @@
-<?php include('../extend/header.php'); 
+<?php include('../extend/header.php');
 include('../extend/permiso.php'); ?>
 
 <div class="row">
@@ -25,6 +25,7 @@ include('../extend/permiso.php'); ?>
 						<option value="" disabled selected>Elige un nivel de usuario</option>
 						<option value="ADMINISTRADOR">Administrador</option>
 						<option value="CLIENTE">CLIENTE</option>
+						<option value="PISCINERO">PISCINERO</option>
 					</select>
 
 					<div class="input-field">
@@ -59,7 +60,7 @@ include('../extend/permiso.php'); ?>
 				<div class="input-field">
 
 					<input type="search" id="buscar">
-					
+
 					<label for="buscar"><i class="material-icons">search</i></label>
 					<i class="material-icons">close</i>
 				</div>
@@ -68,7 +69,7 @@ include('../extend/permiso.php'); ?>
 	</div>
 </div>
 
-<?php 
+<?php
 $sel = $con->query("SELECT * FROM usuario");
 $row = mysqli_num_rows($sel);
  ?>
@@ -79,7 +80,7 @@ $row = mysqli_num_rows($sel);
 			<div class="card-content">
 				<span class="card-title">Usuarios <?php echo $row; ?></span>
 				<table>
-					
+
 					<thead>
 						<tr class="cabecera">
 							<th>Numero de identificacion</th>
@@ -92,7 +93,7 @@ $row = mysqli_num_rows($sel);
 							<th>Eliminar</th>
 						</tr>
 					</thead>
-					
+
 					<?php while($f = $sel->fetch_assoc()){ ?>
 						<tr>
 							<td><?php echo $f['nick']; ?></td>
@@ -103,12 +104,13 @@ $row = mysqli_num_rows($sel);
 									<input type="hidden" name="id" value="<?php echo $f['id']?>">
 									<select name="nivel" required>
 										<option value="" selected><?php echo $f['nivel']; ?></option>
-										<option value="ADMINISTRADOR">Administrador</option>
-										<option value="CLIENTE">cliente</option>
+										<option value="ADMINISTRADOR">ADMINISTRADOR</option>
+										<option value="CLIENTE">CLIENTE</option>
+										<option value="PISCINERO">PISCINERO</option>
 									</select>
 							</td>
 							<td>
-								
+
 								<button type="submit" class="btn-floating"><i class="material-icons">repeat</i></button></form>
 							</td>
 							<td><img src="<?php echo $f['foto']; ?>" width="50" class="circle" alt=""></td>

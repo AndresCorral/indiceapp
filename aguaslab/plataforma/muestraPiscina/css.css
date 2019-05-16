@@ -1,0 +1,21 @@
+	.container{
+		width: 50%;
+		margin: auto;
+		padding: 10px;
+		box-shadow: 0px 0px 5px 1px;
+		margin-bottom: 20px;
+	}
+	.uno{
+		margin: 10px;
+	}
+	.dos
+	{
+		display: grid;
+  		grid-template-columns: repeat(2, 1fr);
+	}
+	.dos>div{
+		grid-template-columns: 1/2;
+	}
+	.dos>fieldset>div{
+		grid-template-columns: 1/2;
+	}

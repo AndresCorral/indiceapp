@@ -1,4 +1,4 @@
-<?php 
+<?php
 include '../conexion/conexion.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -39,6 +39,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				$_SESSION['foto'] = $foto;
 				header('location:../extend/alerta.php?msj=Bienvenido&c=home&p=home&t=success');
 			}elseif ($nick == $usuario && $contra == $pass2 && $nivel == 'CLIENTE') {
+				$_SESSION['nick'] = $nick;
+				$_SESSION['nombre'] = $nombre;
+				$_SESSION['correo'] = $correo;
+				$_SESSION['nivel'] = $nivel;
+				$_SESSION['foto'] = $foto;
+				header('location:../extend/alerta.php?msj=Bienvenido&c=home&p=home&t=success');
+			}elseif ($nick == $usuario && $contra == $pass2 && $nivel == 'PISCINERO') {
 				$_SESSION['nick'] = $nick;
 				$_SESSION['nombre'] = $nombre;
 				$_SESSION['correo'] = $correo;

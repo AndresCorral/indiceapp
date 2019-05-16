@@ -1,4 +1,4 @@
-<?php 
+<?php
 include '../conexion/conexion.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		exit;
 	}
 	$caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ";
-	for ($i=0; $i < strlen($nombre) ; $i++) { 
+	for ($i=0; $i < strlen($nombre) ; $i++) {
 		$buscar = substr($nombre,$i,1);
 		if (strpos($caracteres,$buscar) ===false) {
 			header('location:../extend/alerta.php?msj=El nombre solo debe contener letras&c=us&p=in&t=error');
@@ -61,7 +61,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$ruta = 'foto_perfil/usuario.png';
 	}
 	$pass1 = sha1($pass1);
-	$ins = $con->query("INSERT INTO usuario VALUES ('','$nick','$pass1','$nombre','$correo','$nivel',1,'$ruta')");
+	//var_dump("INSERT INTO usuario VALUES (0,'$nick','$pass1','$nombre','$correo','$nivel',1,'$ruta')");exit();
+	$ins = $con->query("INSERT INTO usuario VALUES (0,'$nick','$pass1','$nombre','$correo','$nivel',1,'$ruta')");
 	if ($ins) {
 		header('location:../extend/alerta.php?msj=El usuario a sido registrado&c=us&p=in&t=success');
 		exit;
@@ -69,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		header('location:../extend/alerta.php?msj=El usuario no pudo ser registrado&c=us&p=in&t=error');
 		exit;
 	}
- 
+
  $con->close();
 }else{
 	header('location:../extend/alerta.php?msj=utiliza el formulario&c=us&p=in&t=error');
