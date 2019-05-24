@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 16-05-2019 a las 02:43:49
+-- Tiempo de generación: 24-05-2019 a las 03:17:52
 -- Versión del servidor: 5.7.19
 -- Versión de PHP: 5.6.30
 
@@ -30,31 +30,40 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `bitacora` (
   `id` int(11) NOT NULL,
-  `indiceLangerier` decimal(12,2) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `fechaHora` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `indiceLangerier` decimal(12,3) NOT NULL,
   `tendencia` varchar(255) NOT NULL,
-  `ph` decimal(12,2) NOT NULL,
+  `ph` decimal(12,3) NOT NULL,
   `productoPh` varchar(255) NOT NULL,
-  `cantidadPh` decimal(12,2) NOT NULL,
-  `cloroInicial` decimal(12,2) NOT NULL,
-  `cloroFinal` decimal(12,2) NOT NULL,
+  `cantidadPh` decimal(12,3) NOT NULL,
+  `cloroInicial` decimal(12,3) NOT NULL,
+  `cloroFinal` decimal(12,3) NOT NULL,
   `productoCloro` varchar(255) NOT NULL,
-  `cantidadCloro` decimal(12,2) NOT NULL,
-  `alcalinidad` decimal(12,2) NOT NULL,
+  `cantidadCloro` decimal(12,3) NOT NULL,
+  `alcalinidad` decimal(12,3) NOT NULL,
   `productoAlcalinidad` varchar(255) NOT NULL,
-  `cantidadAlcalinidad` decimal(12,2) NOT NULL,
-  `dureza` decimal(12,2) NOT NULL,
+  `cantidadAlcalinidad` decimal(12,3) NOT NULL,
+  `dureza` decimal(12,3) NOT NULL,
   `productoDureza` varchar(255) NOT NULL,
-  `cantidadDureza` decimal(12,2) NOT NULL,
+  `cantidadDureza` decimal(12,3) NOT NULL,
   `horaRotacion` time NOT NULL,
   `horaFiltracion` time NOT NULL,
-  `temperatura` decimal(12,2) NOT NULL,
+  `temperatura` decimal(12,3) NOT NULL,
   `desinfeccionFiltro` enum('SI','NO') NOT NULL,
   `cepilladoParedes` enum('SI','NO') NOT NULL,
   `lavadoZonaH` enum('SI','NO') NOT NULL,
   `superCloracion` enum('SI','NO') NOT NULL,
   `productoLimpieza` varchar(255) NOT NULL,
-  `cantidadLimpieza` decimal(12,2) NOT NULL
+  `cantidadLimpieza` decimal(12,3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `bitacora`
+--
+
+INSERT INTO `bitacora` (`id`, `user_id`, `fechaHora`, `indiceLangerier`, `tendencia`, `ph`, `productoPh`, `cantidadPh`, `cloroInicial`, `cloroFinal`, `productoCloro`, `cantidadCloro`, `alcalinidad`, `productoAlcalinidad`, `cantidadAlcalinidad`, `dureza`, `productoDureza`, `cantidadDureza`, `horaRotacion`, `horaFiltracion`, `temperatura`, `desinfeccionFiltro`, `cepilladoParedes`, `lavadoZonaH`, `superCloracion`, `productoLimpieza`, `cantidadLimpieza`) VALUES
+(1, 7, '2019-05-23 02:28:24', '0.607', 'TENDENCIAS INCRUSTANTES', '7.500', 'ph', '22.000', '11.000', '22.000', 'cloro', '8.000', '140.000', 'alcalino', '10.000', '600.000', 'dureza', '17.000', '14:22:00', '15:33:00', '29.000', 'SI', 'SI', 'SI', 'NO', 'limpio', '33.000');
 
 -- --------------------------------------------------------
 
@@ -214,7 +223,8 @@ INSERT INTO `usuario` (`id`, `nick`, `pass`, `nombre`, `correo`, `nivel`, `bloqu
 -- Indices de la tabla `bitacora`
 --
 ALTER TABLE `bitacora`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indices de la tabla `clientes`
@@ -243,7 +253,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `bitacora`
 --
 ALTER TABLE `bitacora`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `clientes`
 --
@@ -257,6 +267,12 @@ ALTER TABLE `usuario`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `bitacora`
+--
+ALTER TABLE `bitacora`
+  ADD CONSTRAINT `bitacora_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `usuario` (`id`);
 
 --
 -- Filtros para la tabla `piscineros`

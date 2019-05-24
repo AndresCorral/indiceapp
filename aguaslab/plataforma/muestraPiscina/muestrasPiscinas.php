@@ -1,12 +1,7 @@
 <?php
 include '../conexion/conexion.php';
-if(isset($_POST['ph'])) {
-    switch($action) {
-        case 'test' : test();break;
-        case 'blah' : blah();break;
-        // ...etc...
-    }
-}
+
+$user_id=$_SESSION['id'];
 $temp=$_POST['temp'];
 $ph=$_POST['ph'];
 $alcalino=$_POST['alcalinidad'];
@@ -15,10 +10,22 @@ $productoPh=$_POST['productoPh'];
 $cantidadPh=$_POST['cantidadPh'];
 $cloroInicial=$_POST['cloroInicial'];
 $cloroFinal=$_POST['cloroFinal'];
-$cloroFinal=$_POST['cloroFinal'];
 $productoCloro=$_POST['productoCloro'];
 $cantidadCloro=$_POST['cantidadCloro'];
-$alcalinidad=$_POST['alcalinidad'];
+$productoAlcalinidad=$_POST['productoAlcalinidad'];
+$cantidadAlcalinidad=$_POST['cantidadAlcalinidad'];
+$productoDureza=$_POST['productoDureza'];
+$cantidadDureza=$_POST['cantidadDureza'];
+$horaRotacion=$_POST['horaRotacion'];
+$horaFiltracion=$_POST['horaFiltracion'];
+
+$desinfeccionFiltro=$_POST['desinfeccion_filtro'];
+$cepilladoParedes=$_POST['cepillado_paredes'];
+$lavadoZonaH=$_POST['lavado_humedas'];
+$superCloracion=$_POST['super_cloracion'];
+$productoLimpieza=$_POST['productoLimpieza'];
+$cantidadLimpieza=$_POST['cantidadLimpieza'];
+
 
 
 $lnAlcalino=log($alcalino);
@@ -67,7 +74,9 @@ if ($indLangerier>=-6.000 && $indLangerier <= -0.600 ) {
 }
 
 $data = '{"indice" :'.number_format($indLangerier,3).',"tendencia" : "'.$tendencia.'"}';
-$con->query("INSERT INTO `bitacora`(`id`, `indiceLangerier`, `tendencia`, `ph`, `productoPh`, `cantidadPh`, `cloroInicial`, `cloroFinal`, `productoCloro`, `cantidadCloro`, `alcalinidad`, `productoAlcalinidad`, `cantidadAlcalinidad`, `dureza`, `productoDureza`, `cantidadDureza`, `horaRotacion`, `horaFiltracion`, `temperatura`, `desinfeccionFiltro`, `cepilladoParedes`, `lavadoZonaH`, `superCloracion`, `productoLimpieza`, `cantidadLimpieza`) VALUES (0,".number_format($indLangerier,3).",'".$tendencia."',".$ph.",[value-5],[value-6],[value-7],[value-8],[value-9],[value-10],[value-11],[value-12],[value-13],[value-14],[value-15],[value-16],[value-17],[value-18],[value-19],[value-20],[value-21],[value-22],[value-23],[value-24],[value-25])");
+/*var_dump("INSERT INTO `bitacora`(`id`, `user_id`, `indiceLangerier`, `tendencia`, `ph`, `productoPh`, `cantidadPh`, `cloroInicial`, `cloroFinal`, `productoCloro`, `cantidadCloro`, `alcalinidad`, `productoAlcalinidad`, `cantidadAlcalinidad`, `dureza`, `productoDureza`, `cantidadDureza`, `horaRotacion`, `horaFiltracion`, `temperatura`, `desinfeccionFiltro`, `cepilladoParedes`, `lavadoZonaH`, `superCloracion`, `productoLimpieza`, `cantidadLimpieza`) VALUES (0,".$user_id.",".number_format($indLangerier,3).",'".$tendencia."',".$ph.",'".$productoPh."',".$cantidadPh.",".$cloroInicial.",".$cloroFinal.",'".$productoCloro."',".$cantidadCloro.",".$alcalino.",'".$productoAlcalinidad."',".$cantidadAlcalinidad.",".$dureza.",'".$productoDureza."',".$cantidadDureza.",'".$horaRotacion."','".$horaFiltracion."',".$temp.",'".$desinfeccionFiltro."','".$cepilladoParedes."','".$lavadoZonaH."','".$superCloracion."','".$productoLimpieza."',".$cantidadLimpieza.")");
+exit();*/
+$con->query("INSERT INTO `bitacora`(`id`, `user_id`, `indiceLangerier`, `tendencia`, `ph`, `productoPh`, `cantidadPh`, `cloroInicial`, `cloroFinal`, `productoCloro`, `cantidadCloro`, `alcalinidad`, `productoAlcalinidad`, `cantidadAlcalinidad`, `dureza`, `productoDureza`, `cantidadDureza`, `horaRotacion`, `horaFiltracion`, `temperatura`, `desinfeccionFiltro`, `cepilladoParedes`, `lavadoZonaH`, `superCloracion`, `productoLimpieza`, `cantidadLimpieza`) VALUES (0,".$user_id.",".number_format($indLangerier,3).",'".$tendencia."',".$ph.",'".$productoPh."',".$cantidadPh.",".$cloroInicial.",".$cloroFinal.",'".$productoCloro."',".$cantidadCloro.",".$alcalino.",'".$productoAlcalinidad."',".$cantidadAlcalinidad.",".$dureza.",'".$productoDureza."',".$cantidadDureza.",'".$horaRotacion."','".$horaFiltracion."',".$temp.",'".$desinfeccionFiltro."','".$cepilladoParedes."','".$lavadoZonaH."','".$superCloracion."','".$productoLimpieza."',".$cantidadLimpieza.")");
 
 $character = json_decode($data);
 echo $data;

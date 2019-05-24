@@ -34,6 +34,7 @@
     $('#modalMuestras').modal({
         dismissible:false
     });
+    $('#modalMuestra').modal();
 
   });
 
