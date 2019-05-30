@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 24-05-2019 a las 03:17:52
+-- Tiempo de generación: 30-05-2019 a las 22:43:22
 -- Versión del servidor: 5.7.19
 -- Versión de PHP: 5.6.30
 
@@ -37,33 +37,41 @@ CREATE TABLE `bitacora` (
   `ph` decimal(12,3) NOT NULL,
   `productoPh` varchar(255) NOT NULL,
   `cantidadPh` decimal(12,3) NOT NULL,
+  `medidaPh` enum('gramos','kilogramos') NOT NULL,
   `cloroInicial` decimal(12,3) NOT NULL,
   `cloroFinal` decimal(12,3) NOT NULL,
   `productoCloro` varchar(255) NOT NULL,
   `cantidadCloro` decimal(12,3) NOT NULL,
+  `medidaCloro` enum('gramos','kilogramos') NOT NULL,
   `alcalinidad` decimal(12,3) NOT NULL,
   `productoAlcalinidad` varchar(255) NOT NULL,
   `cantidadAlcalinidad` decimal(12,3) NOT NULL,
+  `medidaAlcalinidad` enum('gramos','kilogramos') NOT NULL,
   `dureza` decimal(12,3) NOT NULL,
   `productoDureza` varchar(255) NOT NULL,
   `cantidadDureza` decimal(12,3) NOT NULL,
-  `horaRotacion` time NOT NULL,
-  `horaFiltracion` time NOT NULL,
+  `medidaDureza` enum('gramos','kilogramos') NOT NULL,
+  `tiempoRotacion` int(11) NOT NULL,
+  `medidaTiempoRotacion` enum('horas','minutos') NOT NULL,
+  `tiempoFiltracion` int(11) NOT NULL,
+  `medidaTiempoFiltracion` enum('horas','minutos') NOT NULL,
   `temperatura` decimal(12,3) NOT NULL,
   `desinfeccionFiltro` enum('SI','NO') NOT NULL,
   `cepilladoParedes` enum('SI','NO') NOT NULL,
   `lavadoZonaH` enum('SI','NO') NOT NULL,
   `superCloracion` enum('SI','NO') NOT NULL,
   `productoLimpieza` varchar(255) NOT NULL,
-  `cantidadLimpieza` decimal(12,3) NOT NULL
+  `cantidadLimpieza` decimal(12,3) NOT NULL,
+  `medidaLimpieza` enum('gramos','kilogramos') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `bitacora`
 --
 
-INSERT INTO `bitacora` (`id`, `user_id`, `fechaHora`, `indiceLangerier`, `tendencia`, `ph`, `productoPh`, `cantidadPh`, `cloroInicial`, `cloroFinal`, `productoCloro`, `cantidadCloro`, `alcalinidad`, `productoAlcalinidad`, `cantidadAlcalinidad`, `dureza`, `productoDureza`, `cantidadDureza`, `horaRotacion`, `horaFiltracion`, `temperatura`, `desinfeccionFiltro`, `cepilladoParedes`, `lavadoZonaH`, `superCloracion`, `productoLimpieza`, `cantidadLimpieza`) VALUES
-(1, 7, '2019-05-23 02:28:24', '0.607', 'TENDENCIAS INCRUSTANTES', '7.500', 'ph', '22.000', '11.000', '22.000', 'cloro', '8.000', '140.000', 'alcalino', '10.000', '600.000', 'dureza', '17.000', '14:22:00', '15:33:00', '29.000', 'SI', 'SI', 'SI', 'NO', 'limpio', '33.000');
+INSERT INTO `bitacora` (`id`, `user_id`, `fechaHora`, `indiceLangerier`, `tendencia`, `ph`, `productoPh`, `cantidadPh`, `medidaPh`, `cloroInicial`, `cloroFinal`, `productoCloro`, `cantidadCloro`, `medidaCloro`, `alcalinidad`, `productoAlcalinidad`, `cantidadAlcalinidad`, `medidaAlcalinidad`, `dureza`, `productoDureza`, `cantidadDureza`, `medidaDureza`, `tiempoRotacion`, `medidaTiempoRotacion`, `tiempoFiltracion`, `medidaTiempoFiltracion`, `temperatura`, `desinfeccionFiltro`, `cepilladoParedes`, `lavadoZonaH`, `superCloracion`, `productoLimpieza`, `cantidadLimpieza`, `medidaLimpieza`) VALUES
+(1, 7, '2019-05-30 19:22:33', '0.607', 'TENDENCIAS INCRUSTANTES', '7.500', 'ph', '44.000', 'gramos', '11.000', '15.000', 'cloro', '4.000', 'kilogramos', '140.000', 'alcalino', '55.000', 'kilogramos', '600.000', 'dureza', '4.000', 'kilogramos', 33, 'minutos', 22, 'minutos', '29.000', 'SI', 'NO', 'SI', 'SI', 'limpio', '55.000', 'kilogramos'),
+(2, 7, '2019-05-30 19:30:42', '3.999', 'TENDENCIAS INCRUSTANTES', '11.000', 'ph', '22.000', 'gramos', '11.000', '12.000', 'cloro', '33.000', 'kilogramos', '100.000', 'alcalino', '22.000', 'gramos', '900.000', 'dureza', '22.000', 'gramos', 11, 'minutos', 22, 'minutos', '22.000', 'SI', 'NO', 'SI', 'SI', 'limpio', '11.000', 'gramos');
 
 -- --------------------------------------------------------
 
@@ -253,7 +261,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `bitacora`
 --
 ALTER TABLE `bitacora`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `clientes`
 --

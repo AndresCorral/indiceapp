@@ -35,7 +35,7 @@
         dismissible:false
     });
     $('#modalMuestra').modal();
-
+    $('select').formSelect();
   });
 
   </script>

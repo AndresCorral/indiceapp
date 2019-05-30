@@ -8,16 +8,22 @@ $alcalino=$_POST['alcalinidad'];
 $dureza=$_POST['dureza'];
 $productoPh=$_POST['productoPh'];
 $cantidadPh=$_POST['cantidadPh'];
+$medidaPh=$_POST['medidaPh'];
 $cloroInicial=$_POST['cloroInicial'];
 $cloroFinal=$_POST['cloroFinal'];
 $productoCloro=$_POST['productoCloro'];
 $cantidadCloro=$_POST['cantidadCloro'];
+$medidaCloro=$_POST['medidaCloro'];
 $productoAlcalinidad=$_POST['productoAlcalinidad'];
 $cantidadAlcalinidad=$_POST['cantidadAlcalinidad'];
+$medidaAlcalinidad=$_POST['medidaAlcalinidad'];
 $productoDureza=$_POST['productoDureza'];
 $cantidadDureza=$_POST['cantidadDureza'];
-$horaRotacion=$_POST['horaRotacion'];
-$horaFiltracion=$_POST['horaFiltracion'];
+$medidaDureza=$_POST['medidaDureza'];
+$tiempoRotacion=$_POST['tiempoRotacion'];
+$medidaTiempoRotacion=$_POST['medidaTiempoRotacion'];
+$tiempoFiltracion=$_POST['tiempoFiltracion'];
+$medidaTiempoFiltracion=$_POST['medidaTiempoFiltracion'];
 
 $desinfeccionFiltro=$_POST['desinfeccion_filtro'];
 $cepilladoParedes=$_POST['cepillado_paredes'];
@@ -25,6 +31,7 @@ $lavadoZonaH=$_POST['lavado_humedas'];
 $superCloracion=$_POST['super_cloracion'];
 $productoLimpieza=$_POST['productoLimpieza'];
 $cantidadLimpieza=$_POST['cantidadLimpieza'];
+$medidaLimpieza=$_POST['medidaLimpieza'];
 
 
 
@@ -64,7 +71,7 @@ $arraySuma = array(
 	4=>-12.1,
 );
 $indLangerier=array_sum ( $arraySuma );
-$tendencia="hola";
+$tendencia="";
 if ($indLangerier>=-6.000 && $indLangerier <= -0.600 ) {
 	$tendencia="TENDENCIAS CORROSIVAS";
 }  if($indLangerier>=0.600 && $indLangerier <= 6.000){
@@ -74,9 +81,9 @@ if ($indLangerier>=-6.000 && $indLangerier <= -0.600 ) {
 }
 
 $data = '{"indice" :'.number_format($indLangerier,3).',"tendencia" : "'.$tendencia.'"}';
-/*var_dump("INSERT INTO `bitacora`(`id`, `user_id`, `indiceLangerier`, `tendencia`, `ph`, `productoPh`, `cantidadPh`, `cloroInicial`, `cloroFinal`, `productoCloro`, `cantidadCloro`, `alcalinidad`, `productoAlcalinidad`, `cantidadAlcalinidad`, `dureza`, `productoDureza`, `cantidadDureza`, `horaRotacion`, `horaFiltracion`, `temperatura`, `desinfeccionFiltro`, `cepilladoParedes`, `lavadoZonaH`, `superCloracion`, `productoLimpieza`, `cantidadLimpieza`) VALUES (0,".$user_id.",".number_format($indLangerier,3).",'".$tendencia."',".$ph.",'".$productoPh."',".$cantidadPh.",".$cloroInicial.",".$cloroFinal.",'".$productoCloro."',".$cantidadCloro.",".$alcalino.",'".$productoAlcalinidad."',".$cantidadAlcalinidad.",".$dureza.",'".$productoDureza."',".$cantidadDureza.",'".$horaRotacion."','".$horaFiltracion."',".$temp.",'".$desinfeccionFiltro."','".$cepilladoParedes."','".$lavadoZonaH."','".$superCloracion."','".$productoLimpieza."',".$cantidadLimpieza.")");
+/*var_dump("INSERT INTO bitacora(id, user_id, indiceLangerier, tendencia, ph, productoPh, cantidadPh, medidaPh, cloroInicial, cloroFinal, productoCloro, cantidadCloro, medidaCloro, alcalinidad, productoAlcalinidad, cantidadAlcalinidad, medidaAlcalinidad, dureza, productoDureza, cantidadDureza, medidaDureza, tiempoRotacion, medidaTiempoRotacion, tiempoFiltracion, medidaTiempoFiltracion, temperatura, desinfeccionFiltro, cepilladoParedes, lavadoZonaH, superCloracion, productoLimpieza, cantidadLimpieza, medidaLimpieza) VALUES  (0,".$user_id.",".number_format($indLangerier,3).",'".$tendencia."',".$ph.",'".$productoPh."','".$cantidadPh."','".$medidaPh."',".$cloroInicial.",".$cloroFinal.",'".$productoCloro."',".$cantidadCloro.",'".$medidaCloro."',".$alcalino.",'".$productoAlcalinidad."',".$cantidadAlcalinidad.",'".$medidaAlcalinidad."',".$dureza.",'".$productoDureza."',".$cantidadDureza.",'".$medidaDureza."',".$tiempoRotacion.",'".$medidaTiempoRotacion."',".$tiempoFiltracion.",'".$medidaTiempoFiltracion."',".$temp.",'".$desinfeccionFiltro."','".$cepilladoParedes."','".$lavadoZonaH."','".$superCloracion."','".$productoLimpieza."',".$cantidadLimpieza.",'".$medidaLimpieza."')");
 exit();*/
-$con->query("INSERT INTO `bitacora`(`id`, `user_id`, `indiceLangerier`, `tendencia`, `ph`, `productoPh`, `cantidadPh`, `cloroInicial`, `cloroFinal`, `productoCloro`, `cantidadCloro`, `alcalinidad`, `productoAlcalinidad`, `cantidadAlcalinidad`, `dureza`, `productoDureza`, `cantidadDureza`, `horaRotacion`, `horaFiltracion`, `temperatura`, `desinfeccionFiltro`, `cepilladoParedes`, `lavadoZonaH`, `superCloracion`, `productoLimpieza`, `cantidadLimpieza`) VALUES (0,".$user_id.",".number_format($indLangerier,3).",'".$tendencia."',".$ph.",'".$productoPh."',".$cantidadPh.",".$cloroInicial.",".$cloroFinal.",'".$productoCloro."',".$cantidadCloro.",".$alcalino.",'".$productoAlcalinidad."',".$cantidadAlcalinidad.",".$dureza.",'".$productoDureza."',".$cantidadDureza.",'".$horaRotacion."','".$horaFiltracion."',".$temp.",'".$desinfeccionFiltro."','".$cepilladoParedes."','".$lavadoZonaH."','".$superCloracion."','".$productoLimpieza."',".$cantidadLimpieza.")");
+$con->query("INSERT INTO bitacora(id, user_id, indiceLangerier, tendencia, ph, productoPh, cantidadPh, medidaPh, cloroInicial, cloroFinal, productoCloro, cantidadCloro, medidaCloro, alcalinidad, productoAlcalinidad, cantidadAlcalinidad, medidaAlcalinidad, dureza, productoDureza, cantidadDureza, medidaDureza, tiempoRotacion, medidaTiempoRotacion, tiempoFiltracion, medidaTiempoFiltracion, temperatura, desinfeccionFiltro, cepilladoParedes, lavadoZonaH, superCloracion, productoLimpieza, cantidadLimpieza, medidaLimpieza) VALUES  (0,".$user_id.",".number_format($indLangerier,3).",'".$tendencia."',".$ph.",'".$productoPh."','".$cantidadPh."','".$medidaPh."',".$cloroInicial.",".$cloroFinal.",'".$productoCloro."',".$cantidadCloro.",'".$medidaCloro."',".$alcalino.",'".$productoAlcalinidad."',".$cantidadAlcalinidad.",'".$medidaAlcalinidad."',".$dureza.",'".$productoDureza."',".$cantidadDureza.",'".$medidaDureza."',".$tiempoRotacion.",'".$medidaTiempoRotacion."',".$tiempoFiltracion.",'".$medidaTiempoFiltracion."',".$temp.",'".$desinfeccionFiltro."','".$cepilladoParedes."','".$lavadoZonaH."','".$superCloracion."','".$productoLimpieza."',".$cantidadLimpieza.",'".$medidaLimpieza."')");
 
 $character = json_decode($data);
 echo $data;
