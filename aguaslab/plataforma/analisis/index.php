@@ -16,7 +16,7 @@ include('../extend/permiso.php'); ?>
 	</div>
 </div>
 <?php 
-$sel = $con->query("SELECT * FROM muestras");
+$sel = $con->query("SELECT pdf, nit, ftoma,usuario.nombre FROM usuario RIGHT JOIN muestras ON usuario.nick = muestras.nit ORDER BY ftoma DESC");
 $row = mysqli_num_rows($sel);
  ?>
 
@@ -30,7 +30,8 @@ $row = mysqli_num_rows($sel);
 					<thead>
 						<tr class="cabecera">
 							<th>PDF</th>
-							<th>Numero de identificacion</th>
+							<th>Numero de identificación</th>
+							<th>Nombre</th>
 							<th>Fecha de toma</th>
 							<th>vista previa</th>
 
@@ -41,8 +42,9 @@ $row = mysqli_num_rows($sel);
 						<tr>
 							<td><?php echo $f['pdf']; ?></td>
 							<td><?php echo $f['nit']; ?></td>
+							<td><?php echo $f['nombre']; ?></td>
 							<td><?php echo $f['ftoma']; ?></td>
-							<td><a target="_blank" href="../muestras/<?php echo $f['pdf'];?>.pdf">ver pdf</a></td>
+							<td><a target="_blank" href="../muestras/<?php echo $f['pdf'];?>">ver pdf</a></td>
 							
 						</tr>
 					<?php } ?>

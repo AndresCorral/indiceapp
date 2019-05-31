@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.3
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 30-05-2019 a las 22:43:22
--- Versión del servidor: 5.7.19
--- Versión de PHP: 5.6.30
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 31-05-2019 a las 19:19:30
+-- Versión del servidor: 10.1.34-MariaDB
+-- Versión de PHP: 7.2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -71,7 +71,8 @@ CREATE TABLE `bitacora` (
 
 INSERT INTO `bitacora` (`id`, `user_id`, `fechaHora`, `indiceLangerier`, `tendencia`, `ph`, `productoPh`, `cantidadPh`, `medidaPh`, `cloroInicial`, `cloroFinal`, `productoCloro`, `cantidadCloro`, `medidaCloro`, `alcalinidad`, `productoAlcalinidad`, `cantidadAlcalinidad`, `medidaAlcalinidad`, `dureza`, `productoDureza`, `cantidadDureza`, `medidaDureza`, `tiempoRotacion`, `medidaTiempoRotacion`, `tiempoFiltracion`, `medidaTiempoFiltracion`, `temperatura`, `desinfeccionFiltro`, `cepilladoParedes`, `lavadoZonaH`, `superCloracion`, `productoLimpieza`, `cantidadLimpieza`, `medidaLimpieza`) VALUES
 (1, 7, '2019-05-30 19:22:33', '0.607', 'TENDENCIAS INCRUSTANTES', '7.500', 'ph', '44.000', 'gramos', '11.000', '15.000', 'cloro', '4.000', 'kilogramos', '140.000', 'alcalino', '55.000', 'kilogramos', '600.000', 'dureza', '4.000', 'kilogramos', 33, 'minutos', 22, 'minutos', '29.000', 'SI', 'NO', 'SI', 'SI', 'limpio', '55.000', 'kilogramos'),
-(2, 7, '2019-05-30 19:30:42', '3.999', 'TENDENCIAS INCRUSTANTES', '11.000', 'ph', '22.000', 'gramos', '11.000', '12.000', 'cloro', '33.000', 'kilogramos', '100.000', 'alcalino', '22.000', 'gramos', '900.000', 'dureza', '22.000', 'gramos', 11, 'minutos', 22, 'minutos', '22.000', 'SI', 'NO', 'SI', 'SI', 'limpio', '11.000', 'gramos');
+(2, 8, '2019-05-30 19:30:42', '3.999', 'TENDENCIAS INCRUSTANTES', '11.000', 'ph', '22.000', 'gramos', '11.000', '12.000', 'cloro', '33.000', 'kilogramos', '100.000', 'alcalino', '22.000', 'gramos', '900.000', 'dureza', '22.000', 'gramos', 11, 'minutos', 22, 'minutos', '22.000', 'SI', 'NO', 'SI', 'SI', 'limpio', '11.000', 'gramos'),
+(3, 8, '2019-05-31 03:40:18', '0.906', 'TENDENCIAS INCRUSTANTES', '8.000', 'ph', '55.000', 'gramos', '11.000', '15.000', 'cloro', '55.000', 'gramos', '140.000', 'alcalino', '10.000', 'kilogramos', '600.000', 'dureza', '22.000', 'kilogramos', 55, 'minutos', 2, 'horas', '19.000', 'SI', 'NO', 'SI', 'NO', 'limpio', '8.000', 'kilogramos');
 
 -- --------------------------------------------------------
 
@@ -104,79 +105,80 @@ INSERT INTO `clientes` (`id`, `nombre`, `direccion`, `tel`, `correo`, `asesor`) 
 --
 
 CREATE TABLE `muestras` (
-  `pdf` varchar(2) DEFAULT NULL,
-  `nit` varchar(9) DEFAULT NULL,
-  `ftoma` varchar(9) DEFAULT NULL
+  `pdf` varchar(255) NOT NULL,
+  `nit` varchar(15) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `ftoma` date DEFAULT NULL,
+  `fechaHoraSubida` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `muestras`
 --
 
-INSERT INTO `muestras` (`pdf`, `nit`, `ftoma`) VALUES
-('1', '79612285', '2/01/2019'),
-('2', '10784234', '2/01/2019'),
-('3', '11324946', '2/01/2019'),
-('4', '11324946', '2/01/2019'),
-('5', '900492453', '2/01/2019'),
-('6', '79612285', '3/01/2019'),
-('7', '900558424', '3/01/2019'),
-('8', '900310936', '3/01/2019'),
-('9', '900660260', '3/01/2019'),
-('10', '900533027', '3/01/2019'),
-('11', '900843173', '3/01/2019'),
-('12', '900458129', '3/01/2019'),
-('13', '900619727', '3/01/2019'),
-('14', '900422783', '3/01/2019'),
-('15', '809006091', '3/01/2019'),
-('16', '809003088', '3/01/2019'),
-('17', '809006205', '3/01/2019'),
-('18', '809004537', '3/01/2019'),
-('19', '809008679', '3/01/2019'),
-('20', '809006348', '3/01/2019'),
-('21', '809005619', '3/01/2019'),
-('22', '900282426', '3/01/2019'),
-('23', '900201086', '3/01/2019'),
-('24', '809011488', '3/01/2019'),
-('25', '809007784', '3/01/2019'),
-('26', '79612285', '4/01/2019'),
-('27', '11224984', '4/01/2019'),
-('28', '900803022', '4/01/2019'),
-('29', '900624787', '4/01/2019'),
-('30', '808001538', '4/01/2019'),
-('31', '900529575', '4/01/2019'),
-('32', '900268412', '4/01/2019'),
-('33', '900026506', '4/01/2019'),
-('34', '808002100', '4/01/2019'),
-('35', '900325149', '4/01/2019'),
-('36', '808000223', '4/01/2019'),
-('37', '900759534', '4/01/2019'),
-('38', '901103711', '4/01/2019'),
-('39', '901103711', '4/01/2019'),
-('40', '901103711', '4/01/2019'),
-('41', '901104107', '4/01/2019'),
-('42', '901104107', '4/01/2019'),
-('43', '901142252', '4/01/2019'),
-('44', '901142252', '4/01/2019'),
-('45', '901142252', '4/01/2019'),
-('46', '800150172', '4/01/2019'),
-('47', '900169823', '4/01/2019'),
-('48', '890310418', '4/01/2019'),
-('49', '890310418', '4/01/2019'),
-('50', '890310418', '4/01/2019'),
-('51', '890310418', '4/01/2019'),
-('52', '79612285', '5/01/2019'),
-('53', '809007452', '5/01/2019'),
-('54', '900095102', '5/01/2019'),
-('55', '809011681', '5/01/2019'),
-('56', '900186823', '5/01/2019'),
-('57', '901101663', '5/01/2019'),
-('58', '900826463', '5/01/2019'),
-('59', '900442629', '5/01/2019'),
-('60', '800160189', '5/01/2019'),
-('61', '800160189', '5/01/2019'),
-('62', '900449068', '5/01/2019'),
-('63', '808002806', '5/01/2019');
+INSERT INTO `muestras` (`pdf`, `nit`, `ftoma`, `fechaHoraSubida`) VALUES
+('1.pdf', '79612285', '2019-01-02', NULL),
+('10.pdf', '900533027', '2019-01-03', NULL),
+('11.pdf', '900843173', '2019-01-03', NULL),
+('12.pdf', '900458129', '2019-01-03', NULL),
+('13.pdf', '900619727', '2019-01-03', NULL),
+('14.pdf', '900422783', '2019-01-03', NULL),
+('15.pdf', '809006091', '2019-01-03', NULL),
+('16.pdf', '809003088', '2019-01-03', NULL),
+('17.pdf', '809006205', '2019-01-03', NULL),
+('18.pdf', '809004537', '2019-01-03', NULL),
+('19.pdf', '809008679', '2019-01-03', NULL),
+('2.pdf', '10784234', '2019-01-02', NULL),
+('20.pdf', '809006348', '2019-01-03', NULL),
+('21.pdf', '809005619', '2019-01-03', NULL),
+('22.pdf', '900282426', '2019-01-03', NULL),
+('23.pdf', '900201086', '2019-01-03', NULL),
+('24.pdf', '809011488', '2019-01-03', NULL),
+('25.pdf', '809007784', '2019-01-03', NULL),
+('26.pdf', '79612285', '2019-01-04', NULL),
+('27.pdf', '11224984', '2019-01-04', NULL),
+('28.pdf', '900803022', '2019-01-04', NULL),
+('29.pdf', '900624787', '2019-01-04', NULL),
+('3.pdf', '11324946', '2019-01-02', NULL),
+('30.pdf', '808001538', '2019-01-04', NULL),
+('31.pdf', '900529575', '2019-01-04', NULL),
+('32.pdf', '900268412', '2019-01-04', NULL),
+('33.pdf', '900026506', '2019-01-04', NULL),
+('34.pdf', '808002100', '2019-01-04', NULL),
+('35.pdf', '900325149', '2019-01-04', NULL),
+('36.pdf', '808000223', '2019-01-04', NULL),
+('37.pdf', '900759534', '2019-01-04', NULL),
+('38.pdf', '901103711', '2019-01-04', NULL),
+('39.pdf', '901103711', '2019-01-04', NULL),
+('4.pdf', '11324946', '2019-01-02', NULL),
+('40.pdf', '901103711', '2019-01-04', NULL),
+('41.pdf', '901104107', '2019-01-04', NULL),
+('42.pdf', '901104107', '2019-01-04', NULL),
+('43.pdf', '901142252', '2019-01-04', NULL),
+('44.pdf', '901142252', '2019-01-04', NULL),
+('45.pdf', '901142252', '2019-01-04', NULL),
+('46.pdf', '800150172', '2019-01-04', NULL),
+('47.pdf', '900169823', '2019-01-04', NULL),
+('48.pdf', '890310418', '2019-01-04', NULL),
+('49.pdf', '890310418', '2019-01-04', NULL),
+('5.pdf', '900492453', '2019-01-02', NULL),
+('50.pdf', '890310418', '2019-01-04', NULL),
+('51.pdf', '890310418', '2019-01-04', NULL),
+('52.pdf', '79612285', '2019-01-05', NULL),
+('53.pdf', '809007452', '2019-01-05', NULL),
+('54.pdf', '900095102', '2019-01-05', NULL),
+('55.pdf', '809011681', '2019-01-05', NULL),
+('56.pdf', '900186823', '2019-01-05', NULL),
+('57.pdf', '901101663', '2019-01-05', NULL),
+('58.pdf', '900826463', '2019-01-05', NULL),
+('59.pdf', '900442629', '2019-01-05', NULL),
+('6.pdf', '79612285', '2019-01-03', NULL),
+('60.pdf', '800160189', '2019-01-05', NULL),
+('61.pdf', '800160189', '2019-01-05', NULL),
+('62.pdf', '900449068', '2019-01-05', NULL),
+('63.pdf', '808002806', '2019-01-05', NULL),
+('7.pdf', '900558424', '2019-01-03', NULL),
+('8.pdf', '900310936', '2019-01-03', NULL),
+('9.pdf', '900660260', '2019-01-03', NULL);
 
 -- --------------------------------------------------------
 
@@ -194,7 +196,8 @@ CREATE TABLE `piscineros` (
 --
 
 INSERT INTO `piscineros` (`piscinero_id`, `cliente_id`) VALUES
-(7, 5);
+(7, 5),
+(8, 4);
 
 -- --------------------------------------------------------
 
@@ -220,8 +223,9 @@ CREATE TABLE `usuario` (
 INSERT INTO `usuario` (`id`, `nick`, `pass`, `nombre`, `correo`, `nivel`, `bloqueo`, `foto`) VALUES
 (3, '1000463494', '70878ab2f0436919a8235eae9501c2ea280c7126', 'DANIEL', 'danilocha@hotmail.com', 'ADMINISTRADOR', 1, 'foto_perfil/1000463494.png'),
 (4, '123456789', '70878ab2f0436919a8235eae9501c2ea280c7126', 'DANIEL', 'correo@correo.com', 'CLIENTE', 1, 'foto_perfil/usuario.png'),
-(5, '79612285', '7c222fb2927d828af22f592134e8932480637c0d', 'ALGUIEN', 'correo@correo.com', 'CLIENTE', 1, 'foto_perfil/usuario.png'),
-(7, '12345678', '70878ab2f0436919a8235eae9501c2ea280c7126', 'JHONAN', 'piscis@example.com', 'PISCINERO', 1, 'foto_perfil/usuario.png');
+(5, '79612285', '70878ab2f0436919a8235eae9501c2ea280c7126', 'ALGUIEN', 'correo@correo.com', 'CLIENTE', 1, 'foto_perfil/usuario.png'),
+(7, '12345678', '70878ab2f0436919a8235eae9501c2ea280c7126', 'JHONAN', 'piscis@example.com', 'PISCINERO', 1, 'foto_perfil/usuario.png'),
+(8, '1234567890', '70878ab2f0436919a8235eae9501c2ea280c7126', 'LUIS', 'luis@example.com', 'PISCINERO', 1, 'foto_perfil/usuario.png');
 
 --
 -- Índices para tablas volcadas
@@ -241,6 +245,12 @@ ALTER TABLE `clientes`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `muestras`
+--
+ALTER TABLE `muestras`
+  ADD PRIMARY KEY (`pdf`);
+
+--
 -- Indices de la tabla `piscineros`
 --
 ALTER TABLE `piscineros`
@@ -251,7 +261,8 @@ ALTER TABLE `piscineros`
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `nick` (`nick`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -261,17 +272,20 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `bitacora`
 --
 ALTER TABLE `bitacora`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
 -- Restricciones para tablas volcadas
 --

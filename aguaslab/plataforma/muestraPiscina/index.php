@@ -269,7 +269,7 @@ date_default_timezone_set('America/Bogota');
 		var formData= $("#muestraForm").serialize();
 		$.ajax({
 	        data:  formData,
-	        url:   'muestrasPiscinas',
+	        url:   'muestrasPiscinas.php',
 	        dataType: 'html',
 	        type:  'post',
 	        beforeSend: function () {

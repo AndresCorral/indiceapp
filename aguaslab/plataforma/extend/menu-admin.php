@@ -32,6 +32,8 @@
 	<li><div class="divider"></div></li>
 		<li><a href="../usuarios"><i class="material-icons">contacts</i>Usuarios</a></li>
 	<li><div class="divider"></div></li>
+			<li><a href="../subirAnalisis"><i class="material-icons">cloud_upload</i>Subir Analisis</a></li>
+	<li><div class="divider"></div></li>
 			<li><a href="../analisis"><i class="material-icons">contact_phone</i>Analisis</a></li>
 	<li><div class="divider"></div></li>
 			<li><a href="../analisisPiscina"><i class="material-icons">contact_phone</i>Analisis Piscina</a></li>
