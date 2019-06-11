@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.7.3
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 31-05-2019 a las 19:19:30
--- Versión del servidor: 10.1.34-MariaDB
--- Versión de PHP: 7.2.8
+-- Servidor: localhost
+-- Tiempo de generación: 11-06-2019 a las 19:45:16
+-- Versión del servidor: 5.7.19
+-- Versión de PHP: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -37,20 +37,20 @@ CREATE TABLE `bitacora` (
   `ph` decimal(12,3) NOT NULL,
   `productoPh` varchar(255) NOT NULL,
   `cantidadPh` decimal(12,3) NOT NULL,
-  `medidaPh` enum('gramos','kilogramos') NOT NULL,
+  `medidaPh` enum('gramos','kilogramos','litros') NOT NULL,
   `cloroInicial` decimal(12,3) NOT NULL,
   `cloroFinal` decimal(12,3) NOT NULL,
   `productoCloro` varchar(255) NOT NULL,
   `cantidadCloro` decimal(12,3) NOT NULL,
-  `medidaCloro` enum('gramos','kilogramos') NOT NULL,
+  `medidaCloro` enum('gramos','kilogramos','litros') NOT NULL,
   `alcalinidad` decimal(12,3) NOT NULL,
   `productoAlcalinidad` varchar(255) NOT NULL,
   `cantidadAlcalinidad` decimal(12,3) NOT NULL,
-  `medidaAlcalinidad` enum('gramos','kilogramos') NOT NULL,
+  `medidaAlcalinidad` enum('gramos','kilogramos','litros') NOT NULL,
   `dureza` decimal(12,3) NOT NULL,
   `productoDureza` varchar(255) NOT NULL,
   `cantidadDureza` decimal(12,3) NOT NULL,
-  `medidaDureza` enum('gramos','kilogramos') NOT NULL,
+  `medidaDureza` enum('gramos','kilogramos','litros') NOT NULL,
   `tiempoRotacion` int(11) NOT NULL,
   `medidaTiempoRotacion` enum('horas','minutos') NOT NULL,
   `tiempoFiltracion` int(11) NOT NULL,
@@ -62,7 +62,7 @@ CREATE TABLE `bitacora` (
   `superCloracion` enum('SI','NO') NOT NULL,
   `productoLimpieza` varchar(255) NOT NULL,
   `cantidadLimpieza` decimal(12,3) NOT NULL,
-  `medidaLimpieza` enum('gramos','kilogramos') NOT NULL
+  `medidaLimpieza` enum('gramos','kilogramos','litros') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -72,7 +72,9 @@ CREATE TABLE `bitacora` (
 INSERT INTO `bitacora` (`id`, `user_id`, `fechaHora`, `indiceLangerier`, `tendencia`, `ph`, `productoPh`, `cantidadPh`, `medidaPh`, `cloroInicial`, `cloroFinal`, `productoCloro`, `cantidadCloro`, `medidaCloro`, `alcalinidad`, `productoAlcalinidad`, `cantidadAlcalinidad`, `medidaAlcalinidad`, `dureza`, `productoDureza`, `cantidadDureza`, `medidaDureza`, `tiempoRotacion`, `medidaTiempoRotacion`, `tiempoFiltracion`, `medidaTiempoFiltracion`, `temperatura`, `desinfeccionFiltro`, `cepilladoParedes`, `lavadoZonaH`, `superCloracion`, `productoLimpieza`, `cantidadLimpieza`, `medidaLimpieza`) VALUES
 (1, 7, '2019-05-30 19:22:33', '0.607', 'TENDENCIAS INCRUSTANTES', '7.500', 'ph', '44.000', 'gramos', '11.000', '15.000', 'cloro', '4.000', 'kilogramos', '140.000', 'alcalino', '55.000', 'kilogramos', '600.000', 'dureza', '4.000', 'kilogramos', 33, 'minutos', 22, 'minutos', '29.000', 'SI', 'NO', 'SI', 'SI', 'limpio', '55.000', 'kilogramos'),
 (2, 8, '2019-05-30 19:30:42', '3.999', 'TENDENCIAS INCRUSTANTES', '11.000', 'ph', '22.000', 'gramos', '11.000', '12.000', 'cloro', '33.000', 'kilogramos', '100.000', 'alcalino', '22.000', 'gramos', '900.000', 'dureza', '22.000', 'gramos', 11, 'minutos', 22, 'minutos', '22.000', 'SI', 'NO', 'SI', 'SI', 'limpio', '11.000', 'gramos'),
-(3, 8, '2019-05-31 03:40:18', '0.906', 'TENDENCIAS INCRUSTANTES', '8.000', 'ph', '55.000', 'gramos', '11.000', '15.000', 'cloro', '55.000', 'gramos', '140.000', 'alcalino', '10.000', 'kilogramos', '600.000', 'dureza', '22.000', 'kilogramos', 55, 'minutos', 2, 'horas', '19.000', 'SI', 'NO', 'SI', 'NO', 'limpio', '8.000', 'kilogramos');
+(3, 8, '2019-05-31 03:40:18', '0.906', 'TENDENCIAS INCRUSTANTES', '8.000', 'ph', '55.000', 'gramos', '11.000', '15.000', 'cloro', '55.000', 'gramos', '140.000', 'alcalino', '10.000', 'kilogramos', '600.000', 'dureza', '22.000', 'kilogramos', 55, 'minutos', 2, 'horas', '19.000', 'SI', 'NO', 'SI', 'NO', 'limpio', '8.000', 'kilogramos'),
+(4, 7, '2019-06-11 19:35:31', '-11.491', '', '1.000', '1', '1.000', 'kilogramos', '1.000', '1.000', '1', '1.000', 'kilogramos', '1.000', '1', '1.000', 'kilogramos', '1.000', '1', '1.000', 'kilogramos', 1, 'minutos', 1, 'horas', '1.000', 'NO', 'SI', 'NO', 'SI', '1', '1.000', 'kilogramos'),
+(5, 7, '2019-06-11 19:42:41', '15.073', '', '22.000', 'ph', '7.000', 'litros', '11.000', '11.000', 'clorox', '11.000', 'kilogramos', '600.000', 'alcalinox', '21.000', 'kilogramos', '600.000', 'durex', '11.000', 'gramos', 1, 'horas', 22, 'minutos', '18.000', 'SI', 'NO', 'SI', 'NO', 'lipix', '1.000', 'litros');
 
 -- --------------------------------------------------------
 
@@ -196,8 +198,8 @@ CREATE TABLE `piscineros` (
 --
 
 INSERT INTO `piscineros` (`piscinero_id`, `cliente_id`) VALUES
-(7, 5),
-(8, 4);
+(8, 4),
+(7, 5);
 
 -- --------------------------------------------------------
 
@@ -272,20 +274,17 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `bitacora`
 --
 ALTER TABLE `bitacora`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
   MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
 --
 -- Restricciones para tablas volcadas
 --

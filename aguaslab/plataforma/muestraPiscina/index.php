@@ -35,6 +35,7 @@ date_default_timezone_set('America/Bogota');
 								<option disabled selected>Seleccione Una Medida</option>
 								<option value="gramos">Gramos</option>
 								<option value="kilogramos">Kilogramos</option>
+								<option value="litros">Litros</option>
 							</select>
 						</div>
 					</div>
@@ -64,6 +65,7 @@ date_default_timezone_set('America/Bogota');
 								<option disabled selected>Seleccione Una Medida</option>
 								<option value="gramos">Gramos</option>
 								<option value="kilogramos">Kilogramos</option>
+								<option value="litros">Litros</option>
 							</select>
 						</div>
 					</div>
@@ -87,6 +89,7 @@ date_default_timezone_set('America/Bogota');
 								<option disabled selected>Seleccione Una Medida</option>
 								<option value="gramos">Gramos</option>
 								<option value="kilogramos">Kilogramos</option>
+								<option value="litros">Litros</option>
 							</select>
 						</div>
 					</div>
@@ -110,6 +113,7 @@ date_default_timezone_set('America/Bogota');
 								<option disabled selected>Seleccione Una Medida</option>
 								<option value="gramos">Gramos</option>
 								<option value="kilogramos">Kilogramos</option>
+								<option value="litros">Litros</option>
 							</select>
 						</div>
 					</div>
@@ -221,6 +225,7 @@ date_default_timezone_set('America/Bogota');
 								<option disabled selected>Seleccione Una Medida</option>
 								<option value="gramos">Gramos</option>
 								<option value="kilogramos">Kilogramos</option>
+								<option value="litros">Litros</option>
 							</select>
 						</div>
 				</div>
@@ -246,10 +251,17 @@ date_default_timezone_set('America/Bogota');
   </div>
 
 <script type="text/javascript">
-
 	var form = document.getElementById("muestraForm");
+	var boolean = true;
+
 	form.onsubmit = function(e){
-		if ($('select').val()!=null && $('input').val()!="") {
+		boolean = true;
+		$( "select" ).each(function() {
+		  if($( this ).val()==null){
+			boolean=false;
+		  }
+		});
+		if (boolean) {
 			var html="<h4>PH: "+$("#ph").val()+"</h4>"
 			html+="<h4>Temperatura: "+$("#temp").val()+" ºC</h4>"
 			html+="<h4>Alcalinidad: "+$("#alcalinidad").val()+"</h4>"
@@ -282,15 +294,19 @@ date_default_timezone_set('America/Bogota');
 	            response=JSON.parse(response);
 	        	var html='<h4 for="indiceLangerirt" id="indiceLangerirt">Indice Langerier: '+response.indice+'</h4><br> <h4 for="tendenciaAgua" id="tendenciaAgua"> Tendencia del agua: '+response.tendencia+'</h4><br>'
 	            $("#modalBody").html(html);
-	            var html='<h2>Resultados</h2>'
+	            var html='<h2>DATOS GUARDADOS CORRECTAMENTE <i class="material-icons" style="color:green;font-size:50px;">check</i></h2>'
 				$("#modalTitle").html(html);
 	            $("#agree").attr('disabled','disabled');;
 	            $('#muestraForm')[0].reset();
 	            //$('#modalMuestras').modal('close');
-
-
 	        }
-	    });
+		    }).fail( function() {
+	    		var html='<h3>No se pudó guardar los datos, verifique los datos de entrada </h3>'
+	            $("#modalBody").html(html);
+	            var html='<h2>ERROR <i class="material-icons" style="color:red;font-size:50px;">close</i></h2>'
+				$("#modalTitle").html(html);
+	            $("#agree").attr('disabled','disabled');;
+			});
 	}
 </script>
 
