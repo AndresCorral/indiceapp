@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.3
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 11-06-2019 a las 19:45:16
--- Versión del servidor: 5.7.19
--- Versión de PHP: 5.6.30
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 14-06-2019 a las 18:17:34
+-- Versión del servidor: 10.1.34-MariaDB
+-- Versión de PHP: 7.2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -37,20 +37,20 @@ CREATE TABLE `bitacora` (
   `ph` decimal(12,3) NOT NULL,
   `productoPh` varchar(255) NOT NULL,
   `cantidadPh` decimal(12,3) NOT NULL,
-  `medidaPh` enum('gramos','kilogramos','litros') NOT NULL,
+  `medidaPh` enum('gramos','kilogramos','mililitros','litros') NOT NULL,
   `cloroInicial` decimal(12,3) NOT NULL,
   `cloroFinal` decimal(12,3) NOT NULL,
   `productoCloro` varchar(255) NOT NULL,
   `cantidadCloro` decimal(12,3) NOT NULL,
-  `medidaCloro` enum('gramos','kilogramos','litros') NOT NULL,
+  `medidaCloro` enum('gramos','kilogramos','mililitros','litros') NOT NULL,
   `alcalinidad` decimal(12,3) NOT NULL,
   `productoAlcalinidad` varchar(255) NOT NULL,
   `cantidadAlcalinidad` decimal(12,3) NOT NULL,
-  `medidaAlcalinidad` enum('gramos','kilogramos','litros') NOT NULL,
+  `medidaAlcalinidad` enum('gramos','kilogramos','mililitros','litros') NOT NULL,
   `dureza` decimal(12,3) NOT NULL,
   `productoDureza` varchar(255) NOT NULL,
   `cantidadDureza` decimal(12,3) NOT NULL,
-  `medidaDureza` enum('gramos','kilogramos','litros') NOT NULL,
+  `medidaDureza` enum('gramos','kilogramos','mililitros','litros') NOT NULL,
   `tiempoRotacion` int(11) NOT NULL,
   `medidaTiempoRotacion` enum('horas','minutos') NOT NULL,
   `tiempoFiltracion` int(11) NOT NULL,
@@ -62,7 +62,7 @@ CREATE TABLE `bitacora` (
   `superCloracion` enum('SI','NO') NOT NULL,
   `productoLimpieza` varchar(255) NOT NULL,
   `cantidadLimpieza` decimal(12,3) NOT NULL,
-  `medidaLimpieza` enum('gramos','kilogramos','litros') NOT NULL
+  `medidaLimpieza` enum('gramos','kilogramos','mililitros','litros') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -74,7 +74,10 @@ INSERT INTO `bitacora` (`id`, `user_id`, `fechaHora`, `indiceLangerier`, `tenden
 (2, 8, '2019-05-30 19:30:42', '3.999', 'TENDENCIAS INCRUSTANTES', '11.000', 'ph', '22.000', 'gramos', '11.000', '12.000', 'cloro', '33.000', 'kilogramos', '100.000', 'alcalino', '22.000', 'gramos', '900.000', 'dureza', '22.000', 'gramos', 11, 'minutos', 22, 'minutos', '22.000', 'SI', 'NO', 'SI', 'SI', 'limpio', '11.000', 'gramos'),
 (3, 8, '2019-05-31 03:40:18', '0.906', 'TENDENCIAS INCRUSTANTES', '8.000', 'ph', '55.000', 'gramos', '11.000', '15.000', 'cloro', '55.000', 'gramos', '140.000', 'alcalino', '10.000', 'kilogramos', '600.000', 'dureza', '22.000', 'kilogramos', 55, 'minutos', 2, 'horas', '19.000', 'SI', 'NO', 'SI', 'NO', 'limpio', '8.000', 'kilogramos'),
 (4, 7, '2019-06-11 19:35:31', '-11.491', '', '1.000', '1', '1.000', 'kilogramos', '1.000', '1.000', '1', '1.000', 'kilogramos', '1.000', '1', '1.000', 'kilogramos', '1.000', '1', '1.000', 'kilogramos', 1, 'minutos', 1, 'horas', '1.000', 'NO', 'SI', 'NO', 'SI', '1', '1.000', 'kilogramos'),
-(5, 7, '2019-06-11 19:42:41', '15.073', '', '22.000', 'ph', '7.000', 'litros', '11.000', '11.000', 'clorox', '11.000', 'kilogramos', '600.000', 'alcalinox', '21.000', 'kilogramos', '600.000', 'durex', '11.000', 'gramos', 1, 'horas', 22, 'minutos', '18.000', 'SI', 'NO', 'SI', 'NO', 'lipix', '1.000', 'litros');
+(5, 7, '2019-06-11 19:42:41', '15.073', '', '22.000', 'ph', '7.000', 'litros', '11.000', '11.000', 'clorox', '11.000', 'kilogramos', '600.000', 'alcalinox', '21.000', 'kilogramos', '600.000', 'durex', '11.000', 'gramos', 1, 'horas', 22, 'minutos', '18.000', 'SI', 'NO', 'SI', 'NO', 'lipix', '1.000', 'litros'),
+(6, 7, '2019-06-13 22:34:42', '392.994', '', '400.000', 'PH', '55.000', 'mililitros', '11.000', '12.000', 'cloro', '10.000', 'litros', '500.000', 'alcalino', '30.000', 'kilogramos', '600.000', 'dureza', '30.000', 'gramos', 5, 'minutos', 33, 'minutos', '18.000', 'SI', 'NO', 'SI', 'NO', 'limpio', '30.000', 'kilogramos'),
+(7, 7, '2019-06-13 22:37:27', '3.460', 'INCRUSTANTES', '10.000', 'ph', '22.000', 'gramos', '11.000', '12.000', 'cloro', '33.000', 'kilogramos', '500.000', 'alcalino', '10.000', 'mililitros', '600.000', 'dureza', '20.000', 'litros', 110, 'minutos', 2, 'horas', '19.000', 'NO', 'SI', 'SI', 'NO', 'limpio', '13.000', 'mililitros'),
+(8, 11, '2019-06-14 03:23:35', '-3.006', 'CORROSIVAS', '4.000', 'PH', '32.000', 'gramos', '11.000', '12.000', 'cloro', '22.000', 'gramos', '500.000', 'alcalino', '5.000', 'kilogramos', '600.000', 'dureza', '22.000', 'mililitros', 55, 'minutos', 60, 'minutos', '18.000', 'NO', 'NO', 'NO', 'NO', 'limpio', '11.000', 'litros');
 
 -- --------------------------------------------------------
 
@@ -198,8 +201,10 @@ CREATE TABLE `piscineros` (
 --
 
 INSERT INTO `piscineros` (`piscinero_id`, `cliente_id`) VALUES
+(7, 5),
 (8, 4),
-(7, 5);
+(10, 4),
+(11, 5);
 
 -- --------------------------------------------------------
 
@@ -227,7 +232,10 @@ INSERT INTO `usuario` (`id`, `nick`, `pass`, `nombre`, `correo`, `nivel`, `bloqu
 (4, '123456789', '70878ab2f0436919a8235eae9501c2ea280c7126', 'DANIEL', 'correo@correo.com', 'CLIENTE', 1, 'foto_perfil/usuario.png'),
 (5, '79612285', '70878ab2f0436919a8235eae9501c2ea280c7126', 'ALGUIEN', 'correo@correo.com', 'CLIENTE', 1, 'foto_perfil/usuario.png'),
 (7, '12345678', '70878ab2f0436919a8235eae9501c2ea280c7126', 'JHONAN', 'piscis@example.com', 'PISCINERO', 1, 'foto_perfil/usuario.png'),
-(8, '1234567890', '70878ab2f0436919a8235eae9501c2ea280c7126', 'LUIS', 'luis@example.com', 'PISCINERO', 1, 'foto_perfil/usuario.png');
+(8, '1234567890', '70878ab2f0436919a8235eae9501c2ea280c7126', 'LUIS', 'luis@example.com', 'PISCINERO', 1, 'foto_perfil/usuario.png'),
+(10, '1111111', 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', 'JHONAN PISC', 'piscis2@example.com', 'PISCINERO', 1, 'foto_perfil/usuario.png'),
+(11, '111222333', 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', 'MARCO PISC', 'piscis3@example.com', 'PISCINERO', 1, 'foto_perfil/usuario.png'),
+(13, '123321', 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', 'JHONAN PISCA', 'piscis4@example.com', 'CLIENTE', 1, 'foto_perfil/usuario.png');
 
 --
 -- Índices para tablas volcadas
@@ -274,17 +282,20 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `bitacora`
 --
 ALTER TABLE `bitacora`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
 --
 -- Restricciones para tablas volcadas
 --
