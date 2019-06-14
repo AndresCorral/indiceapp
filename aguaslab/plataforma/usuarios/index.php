@@ -1,6 +1,9 @@
 <?php include('../extend/header.php');
 include('../extend/permiso.php'); ?>
-
+<?php
+$sel = $con->query("SELECT * FROM usuario WHERE nivel='CLIENTE'");
+$row = mysqli_num_rows($sel);
+ ?>
 <div class="row">
 	<div class="col s12">
 		<div class="card">
@@ -8,7 +11,7 @@ include('../extend/permiso.php'); ?>
 				<span class="card-title">Alta de usuarios</span>
 				<form action="ins_usuarios.php" class="form" method="post" enctype="multipart/form-data">
 					<div class="input-field">
-						<input type="text" name="nick" required autofocus title="DEBE CONTENER SOLO NUMEROS" pattern="[0-9]{5,15}" id="nick">
+						<input type="number" name="nick" required autofocus title="DEBE CONTENER SOLO NUMEROS" pattern="[0-9]{5,15}" id="nick">
 						<label for="nick">Numero de identificacion</label>
 					</div>
 					<div class="validacion"></div>
@@ -21,13 +24,20 @@ include('../extend/permiso.php'); ?>
 						<label for="pass2">Repetir Contraseña</label>
 					</div>
 
-					<select name="nivel" required>
+					<select id="nivel" name="nivel" required>
 						<option value="" disabled selected>Elige un nivel de usuario</option>
 						<option value="ADMINISTRADOR">Administrador</option>
 						<option value="CLIENTE">CLIENTE</option>
 						<option value="PISCINERO">PISCINERO</option>
 					</select>
-
+					<div id="divCliente">					
+						<select id="cliente" name="cliente">
+							<option value="" disabled selected>Elige un cliente jefe del piscinero</option>
+							<?php while($f = $sel->fetch_assoc()){ ?>
+								<option value="<?php echo $f['id']; ?>"><?php echo $f['nombre'].' - ';echo $f['nick']; ?></option>
+							<?php } ?>
+						</select>
+					</div>
 					<div class="input-field">
 						<input type="text" name="nombre" required autofocus title="Nombre completo del usuario" pattern="[A-Zs ]+" id="nombre" onblur="may(this.value, this.id)">
 						<label for="nombre">Nombre</label>
@@ -135,6 +145,21 @@ $row = mysqli_num_rows($sel);
 
 <?php include('../extend/scripts.php') ?>
 <script src="../js/validacion.js"></script>
+<script type="text/javascript">
+	$("#divCliente").hide();
+	$('#cliente').removeAttr('required');
+	$( "#nivel" ).change(function () {
+		console.log($( this ).val());
+ 	if ($( this ).val()=='PISCINERO') {
+ 		$("#divCliente").show();
+	    $("#cliente").attr('required','');
+ 	}else{
+ 		$("#divCliente").hide();
+		$('#cliente').removeAttr('required');
+ 	}   
+  })
+  .change();
+</script>
 
 </body>
 </html>

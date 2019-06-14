@@ -7,6 +7,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$nombre = $con->real_escape_string(htmlentities($_POST['nombre']));
 	$nivel = $con->real_escape_string(htmlentities($_POST['nivel']));
 	$correo = $con->real_escape_string(htmlentities($_POST['correo']));
+	$cliente = $con->real_escape_string(htmlentities($_POST['cliente']));
+
 	if (empty($nick) || empty($pass1) || empty($nivel) || empty($nombre)) {
 		header('location:../extend/alerta.php?msj=hay un campo vacio&c=us&p=in&t=error');
 		exit;
@@ -61,8 +63,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$ruta = 'foto_perfil/usuario.png';
 	}
 	$pass1 = sha1($pass1);
-	//var_dump("INSERT INTO usuario VALUES (0,'$nick','$pass1','$nombre','$correo','$nivel',1,'$ruta')");exit();
 	$ins = $con->query("INSERT INTO usuario VALUES (0,'$nick','$pass1','$nombre','$correo','$nivel',1,'$ruta')");
+	if ($nivel=="PISCINERO") {
+		$ins2= $con->query("INSERT INTO piscineros(piscinero_id, cliente_id) VALUES ($con->insert_id,$cliente)");
+	}
 	if ($ins) {
 		header('location:../extend/alerta.php?msj=El usuario a sido registrado&c=us&p=in&t=success');
 		exit;

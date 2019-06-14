@@ -35,6 +35,7 @@ date_default_timezone_set('America/Bogota');
 								<option disabled selected>Seleccione Una Medida</option>
 								<option value="gramos">Gramos</option>
 								<option value="kilogramos">Kilogramos</option>
+								<option value="mililitros">Mililitros</option>
 								<option value="litros">Litros</option>
 							</select>
 						</div>
@@ -65,6 +66,7 @@ date_default_timezone_set('America/Bogota');
 								<option disabled selected>Seleccione Una Medida</option>
 								<option value="gramos">Gramos</option>
 								<option value="kilogramos">Kilogramos</option>
+								<option value="mililitros">Mililitros</option>
 								<option value="litros">Litros</option>
 							</select>
 						</div>
@@ -89,6 +91,7 @@ date_default_timezone_set('America/Bogota');
 								<option disabled selected>Seleccione Una Medida</option>
 								<option value="gramos">Gramos</option>
 								<option value="kilogramos">Kilogramos</option>
+								<option value="mililitros">Mililitros</option>
 								<option value="litros">Litros</option>
 							</select>
 						</div>
@@ -113,6 +116,7 @@ date_default_timezone_set('America/Bogota');
 								<option disabled selected>Seleccione Una Medida</option>
 								<option value="gramos">Gramos</option>
 								<option value="kilogramos">Kilogramos</option>
+								<option value="mililitros">Mililitros</option>
 								<option value="litros">Litros</option>
 							</select>
 						</div>
@@ -225,6 +229,7 @@ date_default_timezone_set('America/Bogota');
 								<option disabled selected>Seleccione Una Medida</option>
 								<option value="gramos">Gramos</option>
 								<option value="kilogramos">Kilogramos</option>
+								<option value="mililitros">Mililitros</option>
 								<option value="litros">Litros</option>
 							</select>
 						</div>
@@ -245,8 +250,13 @@ date_default_timezone_set('America/Bogota');
       <div id="modalBody"></div>
     </div>
     <div class="modal-footer">
-      <a href="#!" id="disagree" class="modal-close waves-effect waves-red btn-flat">Cancelar</a>
-      <button onclick="aceptar()" id="agree" class="waves-effect waves-green btn-flat">Aceptar</button>
+    	<div id="botones1">
+	      <a href="#!" id="disagree" class="modal-close waves-effect waves-red btn-flat">Cancelar</a>
+	      <button onclick="aceptar()" id="agree" class="waves-effect waves-green btn-flat">Aceptar</button>	
+    	</div>
+    	<div id="botones2">
+	      <a href="#!" id="disagree" class="modal-close waves-effect waves-red btn-flat">Finalizar</a>
+    	</div>
     </div>
   </div>
 
@@ -269,6 +279,8 @@ date_default_timezone_set('America/Bogota');
 			$("#modalBody").html(html);
 			var html='<h2>¿esta seguro de hacer el calculo?</h2>'
 			$("#modalTitle").html(html);
+			$("#botones1").show();
+			$("#botones2").hide();
 			$('#agree').removeAttr('disabled');
 			$('#modalMuestras').modal('open');
 		}else{
@@ -296,6 +308,8 @@ date_default_timezone_set('America/Bogota');
 	            $("#modalBody").html(html);
 	            var html='<h2>DATOS GUARDADOS CORRECTAMENTE <i class="material-icons" style="color:green;font-size:50px;">check</i></h2>'
 				$("#modalTitle").html(html);
+				$("#botones2").show();
+				$("#botones1").hide();
 	            $("#agree").attr('disabled','disabled');;
 	            $('#muestraForm')[0].reset();
 	            //$('#modalMuestras').modal('close');
