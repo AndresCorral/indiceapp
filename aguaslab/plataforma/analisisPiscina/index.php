@@ -20,7 +20,7 @@ include('../extend/permiso.php'); ?>
 $nivel=$_SESSION['nivel'];
 if ($nivel=='PISCINERO') {
 	$sel = $con->query("SELECT bitacora.id,usuario.nombre,bitacora.tendencia,bitacora.fechaHora FROM bitacora,piscineros,usuario WHERE bitacora.user_id=piscineros.piscinero_id AND piscineros.cliente_id=usuario.id AND piscineros.piscinero_id=".$_SESSION['id']);
-}else if ($nivel=='CLIENTE') {
+}else if ($nivel=='ADMINISTRACION') {
 	$sel = $con->query("SELECT bitacora.id,usuario.nombre,bitacora.tendencia,bitacora.fechaHora FROM bitacora,piscineros,usuario WHERE bitacora.user_id=piscineros.piscinero_id AND piscineros.cliente_id=usuario.id AND piscineros.cliente_id=".$_SESSION['id']);
 }else{
 	$sel = $con->query("SELECT bitacora.id,usuario.nombre,bitacora.tendencia,bitacora.fechaHora FROM bitacora,piscineros,usuario WHERE bitacora.user_id=piscineros.piscinero_id AND piscineros.cliente_id=usuario.id");
