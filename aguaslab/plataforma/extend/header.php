@@ -33,9 +33,9 @@
 	<body>
 		<main>
 			<?php
-				if ($_SESSION['nivel'] == 'ADMINISTRADOR') {
+				if ($_SESSION['nivel'] == 'SUPERUSUARIO') {
 					include 'menu-admin.php';
-				}elseif($_SESSION['nivel'] == 'CLIENTE'){
+				}elseif($_SESSION['nivel'] == 'ADMINISTRACION'){
 					include 'menu-asesor.php';
 				}else{
 					include 'menu-piscinero.php';
