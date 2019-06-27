@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				$nombre = $var['nombre'];
 				$foto = $var['foto'];
 			}
-			if ($nick == $usuario && $contra == $pass2 && $nivel == 'ADMINISTRADOR') {
+			if ($nick == $usuario && $contra == $pass2 && $nivel == 'SUPERUSUARIO') {
 				$_SESSION['id'] = $id;
 				$_SESSION['nick'] = $nick;
 				$_SESSION['nombre'] = $nombre;
@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				$_SESSION['nivel'] = $nivel;
 				$_SESSION['foto'] = $foto;
 				header('location:../extend/alerta.php?msj=Bienvenido&c=home&p=home&t=success');
-			}elseif ($nick == $usuario && $contra == $pass2 && $nivel == 'CLIENTE') {
+			}elseif ($nick == $usuario && $contra == $pass2 && $nivel == 'ADMINISTRACION') {
 				$_SESSION['id'] = $id;
 				$_SESSION['nick'] = $nick;
 				$_SESSION['nombre'] = $nombre;
