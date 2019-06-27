@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if ($ins->execute()) {
 		header('location:../extend/alerta.php?msj=Cliente registrado&c=cli&p=in&t=success');
 	}else{
-		header('location:../extend/alerta.php?msj=Cliente no ha podido ser regustrado&c=cli&p=in&t=error');
+		header('location:../extend/alerta.php?msj=Cliente no ha podido ser registrado&c=cli&p=in&t=error');
 	}
 	$ins->close();
 	$con->close();
