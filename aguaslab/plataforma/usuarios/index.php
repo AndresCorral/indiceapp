@@ -26,8 +26,8 @@ $row = mysqli_num_rows($sel);
 
 					<select id="nivel" name="nivel" required>
 						<option value="" disabled selected>Elige un nivel de usuario</option>
-						<option value="ADMINISTRADOR">Administrador</option>
-						<option value="CLIENTE">CLIENTE</option>
+						<option value="SUPERUSUARIO">Administrador</option>
+						<option value="ADMINISTRACION">CLIENTE</option>
 						<option value="PISCINERO">PISCINERO</option>
 					</select>
 					<div id="divCliente">					
@@ -114,8 +114,8 @@ $row = mysqli_num_rows($sel);
 									<input type="hidden" name="id" value="<?php echo $f['id']?>">
 									<select name="nivel" required>
 										<option value="" selected><?php echo $f['nivel']; ?></option>
-										<option value="ADMINISTRADOR">ADMINISTRADOR</option>
-										<option value="CLIENTE">CLIENTE</option>
+										<option value="SUPERUSUARIO">ADMINISTRADOR</option>
+										<option value="ADMINISTRACION">CLIENTE</option>
 										<option value="PISCINERO">PISCINERO</option>
 									</select>
 							</td>
