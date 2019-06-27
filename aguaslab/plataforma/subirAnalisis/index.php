@@ -4,7 +4,7 @@ include('../extend/permiso.php'); ?>
 
 <?php 
 date_default_timezone_set('America/Bogota');
-$sel = $con->query("SELECT * FROM usuario WHERE nivel='CLIENTE'");
+$sel = $con->query("SELECT * FROM usuario WHERE nivel='ADMINISTRACION'");
 $row = mysqli_num_rows($sel);
  ?>
 <div class="row">
