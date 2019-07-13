@@ -33,6 +33,8 @@
 	<li><div class="divider"></div></li>
 			<li><a href="../analisisPiscina"><i class="material-icons">visibility</i>Ver Bitácoras</a></li>
 	<li><div class="divider"></div></li>
+			<li><a href="../piscinas"><i class="material-icons">pool</i>Piscinas</a></li>
+	<li><div class="divider"></div></li>
 	<li><a href="../login/salir.php"><i class="material-icons">power_settings_new</i>salir</a></li>
 	<li><div class="divider"></div></li>
 

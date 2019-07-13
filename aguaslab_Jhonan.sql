@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-06-2019 a las 18:17:34
+-- Tiempo de generación: 13-07-2019 a las 19:59:44
 -- Versión del servidor: 10.1.34-MariaDB
 -- Versión de PHP: 7.2.8
 
@@ -31,6 +31,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `bitacora` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
+  `cliente_id` int(11) DEFAULT NULL,
+  `piscina_id` int(11) DEFAULT NULL,
   `fechaHora` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `indiceLangerier` decimal(12,3) NOT NULL,
   `tendencia` varchar(255) NOT NULL,
@@ -60,24 +62,10 @@ CREATE TABLE `bitacora` (
   `cepilladoParedes` enum('SI','NO') NOT NULL,
   `lavadoZonaH` enum('SI','NO') NOT NULL,
   `superCloracion` enum('SI','NO') NOT NULL,
-  `productoLimpieza` varchar(255) NOT NULL,
-  `cantidadLimpieza` decimal(12,3) NOT NULL,
-  `medidaLimpieza` enum('gramos','kilogramos','mililitros','litros') NOT NULL
+  `productoLimpieza` varchar(255) DEFAULT NULL,
+  `cantidadLimpieza` decimal(12,3) DEFAULT NULL,
+  `medidaLimpieza` enum('gramos','kilogramos','mililitros','litros') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `bitacora`
---
-
-INSERT INTO `bitacora` (`id`, `user_id`, `fechaHora`, `indiceLangerier`, `tendencia`, `ph`, `productoPh`, `cantidadPh`, `medidaPh`, `cloroInicial`, `cloroFinal`, `productoCloro`, `cantidadCloro`, `medidaCloro`, `alcalinidad`, `productoAlcalinidad`, `cantidadAlcalinidad`, `medidaAlcalinidad`, `dureza`, `productoDureza`, `cantidadDureza`, `medidaDureza`, `tiempoRotacion`, `medidaTiempoRotacion`, `tiempoFiltracion`, `medidaTiempoFiltracion`, `temperatura`, `desinfeccionFiltro`, `cepilladoParedes`, `lavadoZonaH`, `superCloracion`, `productoLimpieza`, `cantidadLimpieza`, `medidaLimpieza`) VALUES
-(1, 7, '2019-05-30 19:22:33', '0.607', 'TENDENCIAS INCRUSTANTES', '7.500', 'ph', '44.000', 'gramos', '11.000', '15.000', 'cloro', '4.000', 'kilogramos', '140.000', 'alcalino', '55.000', 'kilogramos', '600.000', 'dureza', '4.000', 'kilogramos', 33, 'minutos', 22, 'minutos', '29.000', 'SI', 'NO', 'SI', 'SI', 'limpio', '55.000', 'kilogramos'),
-(2, 8, '2019-05-30 19:30:42', '3.999', 'TENDENCIAS INCRUSTANTES', '11.000', 'ph', '22.000', 'gramos', '11.000', '12.000', 'cloro', '33.000', 'kilogramos', '100.000', 'alcalino', '22.000', 'gramos', '900.000', 'dureza', '22.000', 'gramos', 11, 'minutos', 22, 'minutos', '22.000', 'SI', 'NO', 'SI', 'SI', 'limpio', '11.000', 'gramos'),
-(3, 8, '2019-05-31 03:40:18', '0.906', 'TENDENCIAS INCRUSTANTES', '8.000', 'ph', '55.000', 'gramos', '11.000', '15.000', 'cloro', '55.000', 'gramos', '140.000', 'alcalino', '10.000', 'kilogramos', '600.000', 'dureza', '22.000', 'kilogramos', 55, 'minutos', 2, 'horas', '19.000', 'SI', 'NO', 'SI', 'NO', 'limpio', '8.000', 'kilogramos'),
-(4, 7, '2019-06-11 19:35:31', '-11.491', '', '1.000', '1', '1.000', 'kilogramos', '1.000', '1.000', '1', '1.000', 'kilogramos', '1.000', '1', '1.000', 'kilogramos', '1.000', '1', '1.000', 'kilogramos', 1, 'minutos', 1, 'horas', '1.000', 'NO', 'SI', 'NO', 'SI', '1', '1.000', 'kilogramos'),
-(5, 7, '2019-06-11 19:42:41', '15.073', '', '22.000', 'ph', '7.000', 'litros', '11.000', '11.000', 'clorox', '11.000', 'kilogramos', '600.000', 'alcalinox', '21.000', 'kilogramos', '600.000', 'durex', '11.000', 'gramos', 1, 'horas', 22, 'minutos', '18.000', 'SI', 'NO', 'SI', 'NO', 'lipix', '1.000', 'litros'),
-(6, 7, '2019-06-13 22:34:42', '392.994', '', '400.000', 'PH', '55.000', 'mililitros', '11.000', '12.000', 'cloro', '10.000', 'litros', '500.000', 'alcalino', '30.000', 'kilogramos', '600.000', 'dureza', '30.000', 'gramos', 5, 'minutos', 33, 'minutos', '18.000', 'SI', 'NO', 'SI', 'NO', 'limpio', '30.000', 'kilogramos'),
-(7, 7, '2019-06-13 22:37:27', '3.460', 'INCRUSTANTES', '10.000', 'ph', '22.000', 'gramos', '11.000', '12.000', 'cloro', '33.000', 'kilogramos', '500.000', 'alcalino', '10.000', 'mililitros', '600.000', 'dureza', '20.000', 'litros', 110, 'minutos', 2, 'horas', '19.000', 'NO', 'SI', 'SI', 'NO', 'limpio', '13.000', 'mililitros'),
-(8, 11, '2019-06-14 03:23:35', '-3.006', 'CORROSIVAS', '4.000', 'PH', '32.000', 'gramos', '11.000', '12.000', 'cloro', '22.000', 'gramos', '500.000', 'alcalino', '5.000', 'kilogramos', '600.000', 'dureza', '22.000', 'mililitros', 55, 'minutos', 60, 'minutos', '18.000', 'NO', 'NO', 'NO', 'NO', 'limpio', '11.000', 'litros');
 
 -- --------------------------------------------------------
 
@@ -188,23 +176,48 @@ INSERT INTO `muestras` (`pdf`, `nit`, `ftoma`, `fechaHoraSubida`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `piscinas`
+--
+
+CREATE TABLE `piscinas` (
+  `id` int(11) NOT NULL,
+  `cliente_id` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `descripcion` text,
+  `foto1` varchar(255) DEFAULT NULL,
+  `foto2` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `piscinas`
+--
+
+INSERT INTO `piscinas` (`id`, `cliente_id`, `nombre`, `descripcion`, `foto1`, `foto2`) VALUES
+(1, 4, 'Piscina en L', '', 'foto_piscinas/1_4_01.jpg', 'foto_piscinas/1_4_02.jpg');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `piscineros`
 --
 
 CREATE TABLE `piscineros` (
   `piscinero_id` int(11) NOT NULL,
-  `cliente_id` int(11) NOT NULL
+  `cliente_id` int(11) NOT NULL,
+  `fechaVinculacion` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `piscineros`
 --
 
-INSERT INTO `piscineros` (`piscinero_id`, `cliente_id`) VALUES
-(7, 5),
-(8, 4),
-(10, 4),
-(11, 5);
+INSERT INTO `piscineros` (`piscinero_id`, `cliente_id`, `fechaVinculacion`) VALUES
+(7, 4, '2019-07-12 00:58:22'),
+(7, 5, '2019-07-08 15:46:47'),
+(7, 13, '2019-07-12 21:17:07'),
+(8, 4, '2019-07-08 15:46:47'),
+(10, 4, '2019-07-08 15:46:47'),
+(11, 5, '2019-07-08 15:46:47');
 
 -- --------------------------------------------------------
 
@@ -228,14 +241,14 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `nick`, `pass`, `nombre`, `correo`, `nivel`, `bloqueo`, `foto`) VALUES
-(3, '1000463494', '70878ab2f0436919a8235eae9501c2ea280c7126', 'DANIEL', 'danilocha@hotmail.com', 'ADMINISTRADOR', 1, 'foto_perfil/1000463494.png'),
-(4, '123456789', '70878ab2f0436919a8235eae9501c2ea280c7126', 'DANIEL', 'correo@correo.com', 'CLIENTE', 1, 'foto_perfil/usuario.png'),
-(5, '79612285', '70878ab2f0436919a8235eae9501c2ea280c7126', 'ALGUIEN', 'correo@correo.com', 'CLIENTE', 1, 'foto_perfil/usuario.png'),
+(3, '1000463494', '70878ab2f0436919a8235eae9501c2ea280c7126', 'DANIEL', 'danilocha@hotmail.com', 'SUPERUSUARIO', 1, 'foto_perfil/1000463494.png'),
+(4, '123456789', '70878ab2f0436919a8235eae9501c2ea280c7126', 'DANIEL', 'correo@correo.com', 'ADMINISTRACION', 1, 'foto_perfil/usuario.png'),
+(5, '79612285', '70878ab2f0436919a8235eae9501c2ea280c7126', 'ALGUIEN', 'correo@correo.com', 'ADMINISTRACION', 1, 'foto_perfil/usuario.png'),
 (7, '12345678', '70878ab2f0436919a8235eae9501c2ea280c7126', 'JHONAN', 'piscis@example.com', 'PISCINERO', 1, 'foto_perfil/usuario.png'),
 (8, '1234567890', '70878ab2f0436919a8235eae9501c2ea280c7126', 'LUIS', 'luis@example.com', 'PISCINERO', 1, 'foto_perfil/usuario.png'),
 (10, '1111111', 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', 'JHONAN PISC', 'piscis2@example.com', 'PISCINERO', 1, 'foto_perfil/usuario.png'),
 (11, '111222333', 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', 'MARCO PISC', 'piscis3@example.com', 'PISCINERO', 1, 'foto_perfil/usuario.png'),
-(13, '123321', 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', 'JHONAN PISCA', 'piscis4@example.com', 'CLIENTE', 1, 'foto_perfil/usuario.png');
+(13, '123321', 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', 'JHONAN PISCA', 'piscis4@example.com', 'ADMINISTRACION', 1, 'foto_perfil/usuario.png');
 
 --
 -- Índices para tablas volcadas
@@ -246,7 +259,9 @@ INSERT INTO `usuario` (`id`, `nick`, `pass`, `nombre`, `correo`, `nivel`, `bloqu
 --
 ALTER TABLE `bitacora`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `piscina_id` (`piscina_id`),
+  ADD KEY `bitacora_ibfk_2` (`cliente_id`);
 
 --
 -- Indices de la tabla `clientes`
@@ -259,6 +274,13 @@ ALTER TABLE `clientes`
 --
 ALTER TABLE `muestras`
   ADD PRIMARY KEY (`pdf`);
+
+--
+-- Indices de la tabla `piscinas`
+--
+ALTER TABLE `piscinas`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `cliente_id` (`cliente_id`);
 
 --
 -- Indices de la tabla `piscineros`
@@ -282,13 +304,19 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `bitacora`
 --
 ALTER TABLE `bitacora`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `piscinas`
+--
+ALTER TABLE `piscinas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
@@ -304,7 +332,15 @@ ALTER TABLE `usuario`
 -- Filtros para la tabla `bitacora`
 --
 ALTER TABLE `bitacora`
-  ADD CONSTRAINT `bitacora_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `usuario` (`id`);
+  ADD CONSTRAINT `bitacora_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `usuario` (`id`),
+  ADD CONSTRAINT `bitacora_ibfk_2` FOREIGN KEY (`cliente_id`) REFERENCES `usuario` (`id`),
+  ADD CONSTRAINT `bitacora_ibfk_3` FOREIGN KEY (`piscina_id`) REFERENCES `piscinas` (`id`);
+
+--
+-- Filtros para la tabla `piscinas`
+--
+ALTER TABLE `piscinas`
+  ADD CONSTRAINT `piscinas_ibfk_1` FOREIGN KEY (`cliente_id`) REFERENCES `usuario` (`id`);
 
 --
 -- Filtros para la tabla `piscineros`

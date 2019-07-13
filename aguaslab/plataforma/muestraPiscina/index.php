@@ -7,14 +7,36 @@ include('../extend/permisoPiscina.php');
 <?php
 //include 'muestrasPiscinas.php';
 date_default_timezone_set('America/Bogota');
-
+$sel = $con->query("SELECT usuario.id,usuario.nick,usuario.nombre FROM piscineros,usuario WHERE piscineros.cliente_id=usuario.id AND piscineros.piscinero_id=".$_SESSION['id']);
 ?>
+
 <body>
 <form id="muestraForm" action="">
 		<div class="container">
 			<div class="formulario">
 					<div class="uno">
 						<label for="">Fecha y hora: <?php echo date('j/n/Y h:i:s'); ?> </label><!-- Esto es solo para mostrar al usuario, almacenar en la base de datos la fecha -->
+					</div>
+					<div class="uno dos">
+						<div>
+							<label for="administrador">Administrador: </label><br>
+							<select id="administrador"  name="administrador" required>
+								<option disabled selected>Seleccione Un Administrador</option>
+								<?php while($f = $sel->fetch_assoc()){ ?>
+									<option value="<?php echo $f['id']; ?>"><?php echo $f['nick']; ?> - <?php echo $f['nombre']; ?></option>
+								<?php } ?>	
+							</select>
+						</div>
+						<div>
+							<label for="piscina">Piscina: </label><br>
+							<select id="piscina"  name="piscina" required>
+								<option disabled selected>Seleccione Una Piscina</option>
+								<?php while($f = $sel->fetch_assoc()){ ?>
+									<option value="<?php echo $f['id']; ?>"><?php echo $f['nick']; ?> - <?php echo $f['nombre']; ?></option>
+								<?php } ?>	
+							</select>
+						</div>
+						
 					</div>
 					<div class="uno">
 						<label for="ph">PH: </label><br>
@@ -203,12 +225,12 @@ date_default_timezone_set('America/Bogota');
 				        <legend>Super cloración</legend>
 				        <div>
 				        	<label>
-				            	<input required type="radio" name="super_cloracion" value="SI"/><span><span>SI</span></span>
+				            	<input required type="radio" name="super_cloracion" id="super_cloracion" value="SI"/><span><span>SI</span></span>
 				            </label>
 				        </div>
 				        <div>
 				        	<label>
-				            	<input required type="radio" name="super_cloracion" value="NO"><span> No</span>
+				            	<input required type="radio" name="super_cloracion" id="super_cloracion2" value="NO"><span> No</span>
 				            </label>
 				        </div>
 
@@ -217,15 +239,15 @@ date_default_timezone_set('America/Bogota');
 	    		<div class="uno dos tres">
 						<div>
 							<label for="productoLimpieza">Producto </label><br>
-							<input required type="text" name="productoLimpieza" value="" >
+							<input required type="text" name="productoLimpieza" id="productoLimpieza" value="" >
 						</div>
 						<div>
 							<label for="cantidadLimpieza">Cantidad: </label><br>
-							<input required type="number" name="cantidadLimpieza" value="" >
+							<input required type="number" name="cantidadLimpieza" id="cantidadLimpieza" value="" >
 						</div>
 						<div>
 							<label for="medidaLimpieza">Medida: </label><br>
-							<select id="medidaLimpieza"  name="medidaLimpieza" required>
+							<select id="medidaLimpieza"  name="medidaLimpieza" id="medidaLimpieza" required>
 								<option disabled selected>Seleccione Una Medida</option>
 								<option value="gramos">Gramos</option>
 								<option value="kilogramos">Kilogramos</option>
@@ -259,6 +281,7 @@ date_default_timezone_set('America/Bogota');
     	</div>
     </div>
   </div>
+<?php include('../extend/scripts.php') ?>
 
 <script type="text/javascript">
 	var form = document.getElementById("muestraForm");
@@ -267,8 +290,10 @@ date_default_timezone_set('America/Bogota');
 	form.onsubmit = function(e){
 		boolean = true;
 		$( "select" ).each(function() {
-		  if($( this ).val()==null){
-			boolean=false;
+		  if($( this ).attr('required')=='required'){
+			  if($( this ).val()==null){
+				boolean=false;
+			  }
 		  }
 		});
 		if (boolean) {
@@ -322,10 +347,49 @@ date_default_timezone_set('America/Bogota');
 	            $("#agree").attr('disabled','disabled');;
 			});
 	}
+	$('#super_cloracion , #super_cloracion2').change(function() {
+	    if (this.value == 'SI') {
+	    	console.log('SI')
+	        $('#productoLimpieza').prop("disabled", false);
+	        $('#productoLimpieza').prop("required", true);
+	        $('#cantidadLimpieza').prop("disabled", false);
+	        $('#cantidadLimpieza').prop("required", true);
+	        $('#medidaLimpieza').prop("disabled", false);
+	        $('#medidaLimpieza').prop("required", true);
+	    }
+	    if (this.value == 'NO') {
+	    	console.log('NO')
+	        $('#productoLimpieza').prop("disabled", true);
+	        $('#productoLimpieza').prop("required", false);
+	        $('#cantidadLimpieza').prop("disabled", true);
+	        $('#cantidadLimpieza').prop("required", false);
+	        $('#medidaLimpieza').prop("disabled", true);
+	        $('#medidaLimpieza').prop("required", false);
+	    }
+	    $('#productoLimpieza').val(null);
+		$('#cantidadLimpieza').val(null);
+	    $('#medidaLimpieza').val(null);
+	    $('select').formSelect();
+	});
+	$('#administrador').change(function() {
+		$("#piscina option").remove(); 
+		$.ajax({
+	        data:  {param:'getPiscinas',admin_id:this.value},
+	        url:   'muestrasPiscinas.php',
+	        dataType: 'JSON',
+	        type:  'post',
+	        success:  function (response) {
+	            console.log(response)
+	            $('#piscina').append('<option value="" selected disabled>Seleccione Una Piscina</option>')
+	        	for (var i = 0; i < response.length; i++) {
+	        		var option='<option value="'+response[i].id+'"  data-icon="../piscinas/'+response[i].foto1+'">'+response[i].nombre+'</option>'
+	        		$('#piscina').append(option);
+	        	}
+	        	$('select').formSelect();
+	        }
+		    });
+	});
 </script>
-
-
 </body>
 
 
-<?php include('../extend/scripts.php') ?>
