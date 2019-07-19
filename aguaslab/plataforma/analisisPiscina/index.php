@@ -19,11 +19,11 @@ include('../extend/permiso.php'); ?>
 
 $nivel=$_SESSION['nivel'];
 if ($nivel=='PISCINERO') {
-	$sel = $con->query("SELECT bitacora.id,usuario.nombre,bitacora.tendencia,bitacora.fechaHora FROM bitacora,piscineros,usuario WHERE bitacora.user_id=piscineros.piscinero_id AND piscineros.cliente_id=usuario.id AND piscineros.piscinero_id=".$_SESSION['id']);
+	$sel = $con->query("SELECT bitacora.id,usuario.nombre,bitacora.tendencia,bitacora.fechaHora FROM bitacora,usuario WHERE  bitacora.cliente_id IN (SELECT cliente_id FROM piscineros WHERE piscinero_id=".$_SESSION['id'].") AND usuario.id=bitacora.cliente_id");
 }else if ($nivel=='ADMINISTRACION') {
-	$sel = $con->query("SELECT bitacora.id,usuario.nombre,bitacora.tendencia,bitacora.fechaHora FROM bitacora,piscineros,usuario WHERE bitacora.user_id=piscineros.piscinero_id AND piscineros.cliente_id=usuario.id AND piscineros.cliente_id=".$_SESSION['id']);
+	$sel = $con->query("SELECT bitacora.id,usuario.nombre,bitacora.tendencia,bitacora.fechaHora FROM bitacora,piscineros,usuario WHERE bitacora.user_id=usuario.id AND bitacora.cliente_id=".$_SESSION['id']." GROUP BY bitacora.id");
 }else{
-	$sel = $con->query("SELECT bitacora.id,usuario.nombre,bitacora.tendencia,bitacora.fechaHora FROM bitacora,piscineros,usuario WHERE bitacora.user_id=piscineros.piscinero_id AND piscineros.cliente_id=usuario.id");
+	$sel = $con->query("SELECT bitacora.id,usuario.nombre,bitacora.tendencia,bitacora.fechaHora FROM bitacora,piscineros,usuario WHERE bitacora.cliente_id=usuario.id GROUP BY bitacora.id");
 }
 $row = mysqli_num_rows($sel);
  ?>
@@ -38,7 +38,13 @@ $row = mysqli_num_rows($sel);
 					<thead>
 						<tr class="cabecera">
 							<th>#</th>
-							<th>Nombre Cliente</th>
+							<?php 
+							if ($nivel=='ADMINISTRACION') {
+								echo ("<th>Nombre Piscinero</th>");
+							}else{
+								echo ("<th>Nombre Cliente</th>");
+							}
+							?>
 							<th>Tendencia</th>
 							<th>Fecha de toma</th>
 							<th>Vista detallada</th>
@@ -86,10 +92,27 @@ $row = mysqli_num_rows($sel);
 	        	response=response[0];
 	        	console.log(response);
 	            //response=JSON.parse(response);
+	            if (response.productoLimpieza==null) {
+	            	response.productoLimpieza='NO';
+	            }
+	            if (response.cantidadLimpieza==null) {
+	            	response.cantidadLimpieza='NO';
+	            }
+	            if (response.medidaLimpieza==null) {
+	            	response.medidaLimpieza='';
+	            }
 	            var html="";
 	            	html+=`<div class="resultMuestra">
 							<h6> Fecha Hora</h6>
 							<p> `+response.fechaHora+`</p>
+						</div>`;
+					html+=`<div class="resultMuestra">
+							<h6> Nombre Del Piscinero</h6>
+							<p> `+response.nombrePiscinero+`</p>
+						</div>`;
+					html+=`<div class="resultMuestra">
+							<h6> Piscina</h6>
+							<p> `+response.nombre+`</p>
 						</div>`;
 					html+=`<div class="resultMuestra">
 							<h6> PH</h6>

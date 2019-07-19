@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-07-2019 a las 19:59:44
+-- Tiempo de generación: 19-07-2019 a las 06:20:50
 -- Versión del servidor: 10.1.34-MariaDB
 -- Versión de PHP: 7.2.8
 
@@ -188,13 +188,6 @@ CREATE TABLE `piscinas` (
   `foto2` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `piscinas`
---
-
-INSERT INTO `piscinas` (`id`, `cliente_id`, `nombre`, `descripcion`, `foto1`, `foto2`) VALUES
-(1, 4, 'Piscina en L', '', 'foto_piscinas/1_4_01.jpg', 'foto_piscinas/1_4_02.jpg');
-
 -- --------------------------------------------------------
 
 --
@@ -316,7 +309,7 @@ ALTER TABLE `clientes`
 -- AUTO_INCREMENT de la tabla `piscinas`
 --
 ALTER TABLE `piscinas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`

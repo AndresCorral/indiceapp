@@ -35,6 +35,9 @@ switch ($c) {
 	case 'pisc':
 		$carpeta = '../piscinas';
 	break;
+	case 'piscinero':
+		$carpeta = '../piscineros';
+	break;
 	}
 	switch ($p) {
 	case 'in':

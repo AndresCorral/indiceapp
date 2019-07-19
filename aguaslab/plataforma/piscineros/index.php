@@ -20,7 +20,7 @@ include('../extend/permiso.php'); ?>
 
 $nivel=$_SESSION['nivel'];
 if ($nivel=='ADMINISTRACION') {
-	$sel = $con->query("SELECT * FROM piscinas WHERE cliente_id=".$_SESSION['id']);
+	$sel = $con->query("SELECT id, nick, nombre, correo, nivel, bloqueo, foto FROM usuario,piscineros WHERE piscineros.piscinero_id=usuario.id AND piscineros.cliente_id=".$_SESSION['id']);
 }
 $row = mysqli_num_rows($sel);
  ?>
@@ -35,11 +35,11 @@ $row = mysqli_num_rows($sel);
 					<thead>
 						<tr class="cabecera">
 							<th>#</th>
+							<th>Nick</th>
 							<th>Nombre</th>
-							<th>Descripción</th>
-							<th>Foto 1</th>
-							<th>Foto 2</th>
-							<th>Acción</th>
+							<th>Correo</th>
+							<th>Foto</th>
+							<th>Desvincular</th>
 
 						</tr>
 					</thead>
@@ -48,11 +48,11 @@ $row = mysqli_num_rows($sel);
 					<?php while($f = $sel->fetch_assoc()){ ?>
 						<tr>
 							<td><?php echo $cont; ?></td>
+							<td><?php echo $f['nick']; ?></td>
 							<td><?php echo $f['nombre']; ?></td>
-							<td><?php echo $f['descripcion']; ?></td>
-							<td><img src="<?php echo $f['foto1']; ?>" width="50" class="circle materialboxed" alt="piscina"></td>
-							<td><img src="<?php echo $f['foto2']; ?>" width="50" class="circle materialboxed" alt="piscina"></td>
-							<td><a href="#" class="btn-floating red" onclick="swal({ title: 'Esta seguro que desea eliminar la piscina (<?php echo $f['nombre']; ?>)?', text: 'Al eliminar la piscina no podra recuperarla!', type: 'warning', showCancelButton: true, confirmButtonColor: '#3085d6', cancelButtonColor: '#d33', confirmButtonText: 'Si, eliminarla!' }).then(function () {  location.href='piscinas.php?param=delete&id=<?php echo $f['id'] ?>'; })"><i class="material-icons">clear</i></a></td>
+							<td><?php echo $f['correo']; ?></td>
+							<td><img src="../usuarios/<?php echo $f['foto']; ?>" width="50" class="circle materialboxed" alt="<?php echo $f['nombre']; ?>"></td>
+							<td><a href="#" class="btn-floating red" onclick="swal({ title: 'Esta seguro que desea desvincular al piscinero (<?php echo $f['nombre']; ?>)?', text: 'Los cambios se verán reflejados cuando el administrador de AguasLab verifique la solicitud!', type: 'warning', showCancelButton: true, confirmButtonColor: '#3085d6', cancelButtonColor: '#d33', confirmButtonText: 'Si, desvincular!' }).then(function () {  location.href='piscineros.php?param=desvincular&piscinero_id=<?php echo $f['id'] ?>'; })"><i class="material-icons">clear</i></a></td>
 						<?php $cont++ ?>
 						</tr>
 					<?php } ?>
@@ -61,33 +61,29 @@ $row = mysqli_num_rows($sel);
 		</div>
 	</div>
 </div>
+<?php
+if ($nivel=='ADMINISTRACION') {
+	$sel = $con->query("SELECT id, nick, nombre, correo, nivel, foto FROM usuario WHERE usuario.nivel='PISCINERO' AND id NOT IN (SELECT piscinero_id FROM piscineros WHERE cliente_id=".$_SESSION['id'].")");
+}
+?>
 <div class="row">
 	<div class="col s12">
 		<div class="card">
 			<div class="card-content">
-				<span class="card-title">Crear Piscinas</span>
-				<form action="piscinas.php" class="form" method="post" enctype="multipart/form-data">
-					<input type="hidden" name="param" id="param" value="create">
+				<span class="card-title">Vincular Piscinero</span>
+				<form action="piscineros.php" class="form" method="post" enctype="multipart/form-data">
+					<input type="hidden" name="param" id="param" value="vincular">
 					<div class="input-field">
-						<input type="text" name="nombre" required autofocus id="nombre">
-						<label for="nombre">Nombre</label>
+					<select id="piscinero_id" name="piscinero_id" required>
+						<option disabled selected>Seleccione un piscinero para vincular </option>
+						<?php while($f = $sel->fetch_assoc()){ ?>
+							<option value="<?php echo $f['id']; ?>"><?php echo $f['nick']." - ".$f['nombre']; ?></option>
+						<?php } ?>
+
+					</select>
+						<label for="nombre">Piscinero</label>
 					</div>
-					<div class="input-field">
-						<textarea name="descripcion" id="descripcion" autofocus></textarea>
-						<label for="pass1">Descripción</label>
-					</div>
-					<center>
-						
-					<div class="row">
-						<div class="col s6">
-							<input name="foto1" id="foto1" type="file" accept="image/*">
-						</div>
-						<div class="col s6">
-							<input name="foto2" id="foto2" type="file" accept="image/*">
-						</div>
-					</div>
-					</center>
-					<button id="btn_guardar" type="submit" class="btn">Guardar <i class="material-icons">send</i></button>
+					<button id="btn_guardar" type="submit" class="btn">Vincular <i class="material-icons">send</i></button>
 				</form>
 			</div>
 		</div>
