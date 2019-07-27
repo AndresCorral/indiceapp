@@ -354,8 +354,9 @@ $row = mysqli_num_rows($sel);
 	        dataType: 'json',
 	        type:  'post',
 	        success:  function (response) {
-	        	modal(piscinero_id);
-	        	swal("Desvinculación Correcta");
+				swal("Desvinculación Correcta");
+				setTimeout(function(){location.reload()},3000);
+				
 	        }
 	    });
 	}
@@ -367,7 +368,8 @@ $row = mysqli_num_rows($sel);
 	        type:  'post',
 	        success:  function (response) {
 	        	modal(piscinero_id);
-	        	swal("Vinculación Correcta");
+				swal("Vinculación Correcta");
+				setTimeout(function(){location.reload()},3000);
 	        }
 	    });
 	}
