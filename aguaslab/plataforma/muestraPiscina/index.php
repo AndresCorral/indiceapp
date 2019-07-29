@@ -20,23 +20,23 @@ $sel = $con->query("SELECT usuario.id,usuario.nick,usuario.nombre FROM piscinero
 					<div class="uno dos">
 						<div>
 							<label for="administrador">Administrador: </label><br>
-							<select id="administrador"  name="administrador" required>
+							<select id="administrador"  name="administrador" class="required">
 								<option disabled selected>Seleccione Un Administrador</option>
 								<?php while($f = $sel->fetch_assoc()){ ?>
 									<option value="<?php echo $f['id']; ?>"><?php echo $f['nick']; ?> - <?php echo $f['nombre']; ?></option>
-								<?php } ?>	
+								<?php } ?>
 							</select>
 						</div>
 						<div>
 							<label for="piscina">Piscina: </label><br>
-							<select id="piscina"  name="piscina" required>
+							<select id="piscina"  name="piscina" class="required">
 								<option disabled selected>Seleccione Una Piscina</option>
 								<?php while($f = $sel->fetch_assoc()){ ?>
 									<option value="<?php echo $f['id']; ?>"><?php echo $f['nick']; ?> - <?php echo $f['nombre']; ?></option>
-								<?php } ?>	
+								<?php } ?>
 							</select>
 						</div>
-						
+
 					</div>
 					<div class="uno">
 						<label for="ph">PH: </label><br>
@@ -53,7 +53,7 @@ $sel = $con->query("SELECT usuario.id,usuario.nick,usuario.nombre FROM piscinero
 						</div>
 						<div>
 							<label for="medidaPh">Medida: </label><br>
-							<select id="medidaPh"  name="medidaPh" required>
+							<select id="medidaPh"  name="medidaPh" class="required">
 								<option disabled selected>Seleccione Una Medida</option>
 								<option value="gramos">Gramos</option>
 								<option value="kilogramos">Kilogramos</option>
@@ -84,7 +84,7 @@ $sel = $con->query("SELECT usuario.id,usuario.nick,usuario.nombre FROM piscinero
 						</div>
 						<div>
 							<label for="medidaCloro">Medida: </label><br>
-							<select id="medidaCloro"  name="medidaCloro" required>
+							<select id="medidaCloro"  name="medidaCloro" class="required">
 								<option disabled selected>Seleccione Una Medida</option>
 								<option value="gramos">Gramos</option>
 								<option value="kilogramos">Kilogramos</option>
@@ -109,7 +109,7 @@ $sel = $con->query("SELECT usuario.id,usuario.nick,usuario.nombre FROM piscinero
 						</div>
 						<div>
 							<label for="medidaAlcalinidad">Medida: </label><br>
-							<select id="medidaAlcalinidad"  name="medidaAlcalinidad" required>
+							<select id="medidaAlcalinidad"  name="medidaAlcalinidad" class="required">
 								<option disabled selected>Seleccione Una Medida</option>
 								<option value="gramos">Gramos</option>
 								<option value="kilogramos">Kilogramos</option>
@@ -134,7 +134,7 @@ $sel = $con->query("SELECT usuario.id,usuario.nick,usuario.nombre FROM piscinero
 						</div>
 						<div>
 							<label for="medidaDureza">Medida: </label><br>
-							<select id="medidaDureza"  name="medidaDureza" required>
+							<select id="medidaDureza"  name="medidaDureza" class="required">
 								<option disabled selected>Seleccione Una Medida</option>
 								<option value="gramos">Gramos</option>
 								<option value="kilogramos">Kilogramos</option>
@@ -147,7 +147,7 @@ $sel = $con->query("SELECT usuario.id,usuario.nick,usuario.nombre FROM piscinero
 						<div>
 							<label for="tiempoRotacion">Tiempo de rotación: </label><br>
 							<input required  type="number" name="tiempoRotacion" value="" min="1" pattern="^[0-9]+" onpaste="return false;" onDrop="return false;" autocomplete=off>
-							<select id="medidaTiempoRotacion" name="medidaTiempoRotacion" required>
+							<select id="medidaTiempoRotacion" name="medidaTiempoRotacion" class="required">
 								<option disabled selected>--</option>
 								<option value="minutos">Minuto(s)</option>
 								<option value="horas">Hora(s)</option>
@@ -156,7 +156,7 @@ $sel = $con->query("SELECT usuario.id,usuario.nick,usuario.nombre FROM piscinero
 						<div>
 							<label for="tiempoFiltracion">Tiempo de filtración: </label><br>
 							<input required  type="number" name="tiempoFiltracion" value="" min="1" pattern="^[0-9]+" onpaste="return false;" onDrop="return false;" autocomplete=off>
-							<select id="medidaTiempoFiltracion" name="medidaTiempoFiltracion" required>
+							<select id="medidaTiempoFiltracion" name="medidaTiempoFiltracion" class="required">
 								<option disabled selected>--</option>
 								<option value="minutos">Minuto(s)</option>
 								<option value="horas">Hora(s)</option>
@@ -247,7 +247,7 @@ $sel = $con->query("SELECT usuario.id,usuario.nick,usuario.nombre FROM piscinero
 						</div>
 						<div>
 							<label for="medidaLimpieza">Medida: </label><br>
-							<select id="medidaLimpieza"  name="medidaLimpieza" id="medidaLimpieza" required>
+							<select id="medidaLimpieza"  name="medidaLimpieza" id="medidaLimpieza" class="required">
 								<option disabled selected>Seleccione Una Medida</option>
 								<option value="gramos">Gramos</option>
 								<option value="kilogramos">Kilogramos</option>
@@ -274,7 +274,7 @@ $sel = $con->query("SELECT usuario.id,usuario.nick,usuario.nombre FROM piscinero
     <div class="modal-footer">
     	<div id="botones1">
 	      <a href="#!" id="disagree" class="modal-close waves-effect waves-red btn-flat">Cancelar</a>
-	      <button onclick="aceptar()" id="agree" class="waves-effect waves-green btn-flat">Aceptar</button>	
+	      <button onclick="aceptar()" id="agree" class="waves-effect waves-green btn-flat">Aceptar</button>
     	</div>
     	<div id="botones2">
 	      <a href="#!" id="disagree" class="modal-close waves-effect waves-red btn-flat">Finalizar</a>
@@ -290,7 +290,7 @@ $sel = $con->query("SELECT usuario.id,usuario.nick,usuario.nombre FROM piscinero
 	form.onsubmit = function(e){
 		boolean = true;
 		$( "select" ).each(function() {
-		  if($( this ).attr('required')=='required'){
+		  if($( this ).hasClass("required")){
 			  if($( this ).val()==null){
 				boolean=false;
 			  }
@@ -355,7 +355,7 @@ $sel = $con->query("SELECT usuario.id,usuario.nick,usuario.nombre FROM piscinero
 	        $('#cantidadLimpieza').prop("disabled", false);
 	        $('#cantidadLimpieza').prop("required", true);
 	        $('#medidaLimpieza').prop("disabled", false);
-	        $('#medidaLimpieza').prop("required", true);
+	        $('#medidaLimpieza').addClass("required");
 	    }
 	    if (this.value == 'NO') {
 	    	console.log('NO')
@@ -364,7 +364,7 @@ $sel = $con->query("SELECT usuario.id,usuario.nick,usuario.nombre FROM piscinero
 	        $('#cantidadLimpieza').prop("disabled", true);
 	        $('#cantidadLimpieza').prop("required", false);
 	        $('#medidaLimpieza').prop("disabled", true);
-	        $('#medidaLimpieza').prop("required", false);
+	        $('#medidaLimpieza').removeClass("required");
 	    }
 	    $('#productoLimpieza').val(null);
 		$('#cantidadLimpieza').val(null);
@@ -372,7 +372,7 @@ $sel = $con->query("SELECT usuario.id,usuario.nick,usuario.nombre FROM piscinero
 	    $('select').formSelect();
 	});
 	$('#administrador').change(function() {
-		$("#piscina option").remove(); 
+		$("#piscina option").remove();
 		$.ajax({
 	        data:  {param:'getPiscinas',admin_id:this.value},
 	        url:   'muestrasPiscinas.php',

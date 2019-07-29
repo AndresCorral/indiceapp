@@ -22,25 +22,24 @@ while($f = $sel->fetch_assoc()){
 	$nickPiscinero=$f['nick'];
 }
 
-var_dump($sel);exit();
 ini_set( 'display_errors', 1 );
 error_reporting( E_ALL );
-$from = "programacion@aguaslab.co";
+$from = "_mainaccount@aguaslab.co";
 $to = "programacion@aguaslab.co";
 $headers = "From:" . $from;
 switch ($param) {
-	case 'vincular':	
+	case 'vincular':
 		$subject = "Solicitud de vinculación";
 		$message = "El administrador ".$nombreAdmnistrador." - ".$nickAdmnistrador." solicita la vinculación del piscinero ".$nombrePiscinero." - ".$nickPiscinero." en su organización.";
 		mail($to,$subject,$message, $headers);
 		header('location:../extend/alerta.php?msj=El piscinero ha sido vinculado correctamente&c=piscinero&p=in&t=success');
 		break;
-	case 'desvincular':	
+	case 'desvincular':
 		$subject = "Solicitud de desvinculación";
 		$message = "El administrador ".$nombreAdmnistrador." - ".$nickAdmnistrador." solicita la desvinculación  del piscinero ".$nombrePiscinero." - ".$nickPiscinero." en su organización.";
 		mail($to,$subject,$message, $headers);
 		header('location:../extend/alerta.php?msj=El piscinero ha sido desvinculado correctamente&c=piscinero&p=in&t=success');
 		break;
-	
+
 }
 ?>

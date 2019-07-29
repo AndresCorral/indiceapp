@@ -30,7 +30,7 @@ $row = mysqli_num_rows($sel);
 						<option value="ADMINISTRACION">ADMINISTRACION</option>
 						<option value="PISCINERO">PISCINERO</option>
 					</select>
-					<div id="divCliente">					
+					<div id="divCliente">
 						<select id="cliente" name="cliente">
 							<option value="" disabled selected>Elige un cliente jefe del piscinero</option>
 							<?php while($f = $sel->fetch_assoc()){ ?>
@@ -43,9 +43,10 @@ $row = mysqli_num_rows($sel);
 						<label for="nombre">Nombre</label>
 					</div>
 					<div class="input-field">
-						<input type="email" name="correo" required autofocus title="Correo electronico" id="correo" >
+						<input type="email" name="correo" id="correo" required autofocus title="Correo electronico" id="correo" >
 						<label for="correo">Correo</label>
 					</div>
+					<div class="validacionCorreo"></div>
 					<div class="input-field file-field">
 						<div class="btn">
 							<span>Foto:</span>
@@ -255,7 +256,7 @@ $row = mysqli_num_rows($sel);
 		<form id='formVincular'>
 	    	<input id="piscinero_id" name="piscinero_id" type="hidden">
 			<select id="vincularAdministrador" name="vincularAdministrador" required>
-				
+
 			</select>
 			<input type="submit" value="Vincular">
 		</form>
@@ -268,6 +269,18 @@ $row = mysqli_num_rows($sel);
 <?php include('../extend/scripts.php') ?>
 <script src="../js/validacion.js"></script>
 <script type="text/javascript">
+	$('#correo').change(function(){
+		$.post('ajax_validacion_correo.php',{
+			correo:$('#correo').val(),
+			beforeSend: function(){
+				$('.validacionCorreo').html("Espere un momento por favor ...");
+			}
+		}, function(respuesta){
+			$('.validacionCorreo').html(respuesta);
+		});
+	});
+</script>
+<script type="text/javascript">
 	$("#divCliente").hide();
 	$('#cliente').removeAttr('required');
 	$( "#nivel" ).change(function () {
@@ -277,7 +290,7 @@ $row = mysqli_num_rows($sel);
  	}else{
  		$("#divCliente").hide();
 		$('#cliente').removeAttr('required');
- 	}   
+ 	}
   })
   .change();
 </script>
@@ -313,8 +326,8 @@ $row = mysqli_num_rows($sel);
 	   vincular(this.piscinero_id.value,this.vincularAdministrador.value)
 	});
 	function modal(id){
-		$("#table3 tbody tr").remove(); 
-		$("#vincularAdministrador option").remove(); 
+		$("#table3 tbody tr").remove();
+		$("#vincularAdministrador option").remove();
 		$.ajax({
 	        data:  {'param':'mostrar','id':id},
 	        url:   'piscineros.php',
@@ -354,8 +367,7 @@ $row = mysqli_num_rows($sel);
 	        dataType: 'json',
 	        type:  'post',
 	        success:  function (response) {
-	        	modal(piscinero_id);
-	        	swal("Desvinculación Correcta");
+	        	swal("Desvinculación Correcta");					setTimeout(function(){location.reload()},3000);
 	        }
 	    });
 	}
@@ -366,8 +378,8 @@ $row = mysqli_num_rows($sel);
 	        dataType: 'json',
 	        type:  'post',
 	        success:  function (response) {
-	        	modal(piscinero_id);
-	        	swal("Vinculación Correcta");
+				swal("Vinculación Correcta");
+				setTimeout(function(){location.reload()},3000);
 	        }
 	    });
 	}

@@ -45,6 +45,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		exit;
 		}
 	}
+	$sel = $con->query("SELECT id FROM usuario WHERE correo = '$correo' ");
+	$row = mysqli_num_rows($sel);
+	if ($row > 0) {
+		header('location:../extend/alerta.php?msj=El correo ya existe&c=us&p=in&t=error');
+		exit;
+	}
 	$extension = '';
 	$ruta = 'foto_perfil';
 	$archivo = $_FILES['foto']['tmp_name'];
@@ -63,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$ruta = 'foto_perfil/usuario.png';
 	}
 	$pass1 = sha1($pass1);
-	$ins = $con->query("INSERT INTO usuario VALUES (0,'$nick','$pass1','$nombre','$correo','$nivel',1,'$ruta')");
+	$ins = $con->query("INSERT INTO usuario(id, nick, pass, nombre, correo, nivel, bloqueo, foto) VALUES (0,'$nick','$pass1','$nombre','$correo','$nivel',1,'$ruta')");
 	if ($nivel=="PISCINERO") {
 		$ins2= $con->query("INSERT INTO piscineros(piscinero_id, cliente_id) VALUES ($con->insert_id,$cliente)");
 	}
