@@ -10,7 +10,7 @@ include '../conexion/conexion.php';
 
 
  <body>
- 	<?php 
+ 	<?php
 $mensaje = htmlentities($_GET['msj']);
 $c = htmlentities($_GET['c']);
 $p = htmlentities($_GET['p']);
@@ -64,7 +64,7 @@ if ($t == "error") {
 
  	?>
  </body>
- 
+
    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.3.2/sweetalert2.js"></script>
    <script
   src="https://code.jquery.com/jquery-3.1.1.min.js"
@@ -87,7 +87,7 @@ $(document).keyup(function(e){
 	if (e.which == 27) {
 		location.href='<?php echo $dir; ?>';
 	}
-	
+
 });
 
  </script>

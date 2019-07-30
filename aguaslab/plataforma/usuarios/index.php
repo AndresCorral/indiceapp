@@ -367,7 +367,8 @@ $row = mysqli_num_rows($sel);
 	        dataType: 'json',
 	        type:  'post',
 	        success:  function (response) {
-	        	swal("Desvinculación Correcta");					setTimeout(function(){location.reload()},3000);
+	        	swal("Desvinculación Correcta");
+	        	setTimeout(function(){location.reload()},3000);
 	        }
 	    });
 	}
